@@ -15,27 +15,27 @@
   <meta property="og:description" content="SynxWorks is an elite professional website design agency delivering cutting-edge custom web solutions." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://synxworks.com" />
-  <!-- Placeholder for og:image; replace with your logo image URL -->
   <meta property="og:image" content="https://synxworks.com/SynxFinal.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SynxWorks — Elite Professional Website Design Agency" />
   <meta name="twitter:description" content="SynxWorks is an elite professional website design agency delivering cutting-edge custom web solutions." />
-  <!-- Placeholder for twitter:image; replace with your logo image URL -->
   <meta name="twitter:image" content="https://synxworks.com/SynxFinal.png" />
 
-  <!-- Favicon placeholder; replace 'favicon.ico' with your actual favicon file -->
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
+  <!-- ✅ Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    /* Reset */
     *, *::before, *::after {
       box-sizing: border-box;
     }
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', sans-serif; /* ✅ Font changed */
       background-color: #2d327d;
       color: #ffffff;
       display: flex;
@@ -48,51 +48,33 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
     .logo-placeholder {
-      margin: 0 auto 1rem;
-      width: 160px;
-      height: 80px;
+      margin: 0 auto 0.5rem;
+      width: 100px;
+      height: 100px; /* ✅ Square logo */
       background-color: rgba(164, 247, 49, 0.3);
-      border-radius: 8px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       color: #A4F731;
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-      user-select: none;
-      /* Replace this block with your logo image */
-    }
-    .secondary-logo-slogan {
-      max-width: 280px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .secondary-logo-placeholder {
-      width: 120px;
-      height: 60px;
-      background-color: rgba(255, 255, 255, 0.15);
-      border-radius: 6px;
-      margin: 0 auto 0.5rem;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      color: #ffffffcc;
-      font-size: 1.1rem;
+      font-size: 1.4rem;
       letter-spacing: 1px;
-    }
-    .slogan {
-      font-size: 1rem;
-      color: #A4F731;
-      font-weight: 500;
-      font-style: italic;
       user-select: none;
     }
 
+    /* ✅ Slogan Styling */
+    .slogan {
+      font-size: 1rem;
+      font-weight: 500;
+      font-style: italic;
+      color: #A4F731;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
     nav {
-      margin-top: 1.75rem;
+      margin-top: 1rem;
       display: flex;
       justify-content: center;
       gap: 2.5rem;
@@ -158,14 +140,9 @@
 
     @media (min-width: 480px) {
       .logo-placeholder {
-        width: 240px;
-        height: 100px;
-        font-size: 2rem;
-      }
-      .secondary-logo-placeholder {
-        width: 180px;
-        height: 80px;
-        font-size: 1.25rem;
+        width: 120px;
+        height: 120px;
+        font-size: 1.7rem;
       }
       main {
         padding: 4rem 1.5rem;
@@ -183,11 +160,8 @@
 <body>
 
 <header>
-  <div class="logo-placeholder" aria-label="Main logo placeholder">Your Logo Here</div>
-  <div class="secondary-logo-slogan">
-    <div class="secondary-logo-placeholder" aria-label="Secondary logo placeholder">Secondary Logo</div>
-    <div class="slogan">Delivering Excellence in Web Design</div>
-  </div>
+  <div class="logo-placeholder" aria-label="Main logo placeholder">Logo</div>
+  <div class="slogan">Smart sites. Delivered Fast.</div> <!-- ✅ Slogan added -->
   <nav role="navigation" aria-label="Primary navigation">
     <a href="contact.html" tabindex="0">Contact</a>
     <a href="about.html" tabindex="0">About</a>
@@ -195,14 +169,19 @@
 </header>
 
 <main>
+  <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">
+    Custom Websites, Built for Impact
+  </h1>
+  <p style="font-size: 1.15rem; line-height: 1.6; color: #e0e0e0; max-width: 540px; margin-bottom: 2.5rem;">
+    At <strong>SynxWorks</strong>, we craft high-performance, visually striking websites tailored to your brand. Whether you’re launching a business, building a portfolio, or leveling up your online presence, we make sure your site looks sharp and works flawlessly across all devices.
+  </p>
   <a
     href="https://payhip.com/SynxWorks"
     class="store-button"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Go to SynxWorks store on Payhip"
-    >Visit Our Website Creation Store</a
-  >
+  >Visit Our Store</a>
 </main>
 
 <footer>
