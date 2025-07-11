@@ -24,7 +24,7 @@
   <meta name="twitter:image" content="https://synxworks.com/SynxFinal.png" />
 
   <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32" />
 
   <!-- ✅ Google Font: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -154,13 +154,21 @@
         font-size: 1.5rem;
         max-width: 360px;
       }
+      .logo-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-placeholder" aria-label="Main logo placeholder">Logo</div>
+  <img src="SynxFinal.png" alt="SynxWorks logo" class="logo-image" />
   <div class="slogan">Smart sites. Delivered Fast.</div> <!-- ✅ Slogan added -->
   <nav role="navigation" aria-label="Primary navigation">
     <a href="contact.html" tabindex="0">Contact</a>
