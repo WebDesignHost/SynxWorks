@@ -9,7 +9,7 @@
   <meta name="author" content="SynxWorks Team" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://synxworks.com" />
-  
+
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="SynxWorks — Elite Professional Website Design Agency" />
   <meta property="og:description" content="SynxWorks is an elite professional website design agency delivering cutting-edge custom web solutions." />
@@ -35,7 +35,7 @@
     }
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif; /* ✅ Font changed */
+      font-family: 'Inter', sans-serif;
       background-color: #2d327d;
       color: #ffffff;
       display: flex;
@@ -47,20 +47,14 @@
       text-align: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
-    .logo-placeholder {
-      margin: 0 auto 0.5rem;
+
+    .logo-image {
       width: 100px;
-      height: 100px; /* ✅ Square logo */
-      background-color: rgba(164, 247, 49, 0.3);
+      height: 100px;
+      max-width: 100%;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: #A4F731;
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-      user-select: none;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
     }
 
     /* ✅ Slogan Styling */
@@ -139,10 +133,9 @@
     }
 
     @media (min-width: 480px) {
-      .logo-placeholder {
-        width: 120px;
-        height: 120px;
-        font-size: 1.7rem;
+      .logo-image {
+        width: 150px;
+        height: 150px;
       }
       main {
         padding: 4rem 1.5rem;
@@ -154,22 +147,6 @@
         font-size: 1.5rem;
         max-width: 360px;
       }
-      .logo-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
-  object-fit: contain;
-  margin-bottom: 0.5rem;
-}
-
-@media (min-width: 480px) {
-  .logo-image {
-    width: 120px;
-    height: 120px;
-  }
-}
-
-
     }
   </style>
 </head>
@@ -177,7 +154,7 @@
 
 <header>
   <img src="SynxFinal.png" alt="SynxWorks logo" class="logo-image" />
-  <div class="slogan">Smart sites. Delivered Fast.</div> <!-- ✅ Slogan added -->
+  <div class="slogan">Smart sites. Delivered Fast.</div>
   <nav role="navigation" aria-label="Primary navigation">
     <a href="contact.html" tabindex="0">Contact</a>
     <a href="about.html" tabindex="0">About</a>
@@ -206,3 +183,4 @@
 
 </body>
 </html>
+
