@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Store – SynxWorks</title>
+  <meta name="description" content="Browse our professional web design services. Clean, high-converting websites built fast.">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .store-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 2rem;
+    }
+
+    .product-card {
+      background-color: #ffffff;
+      color: #000000;
+      max-width: 320px;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+      text-align: left;
+    }
+
+    .product-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      font-size: 1rem;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .buy-button {
+      background-color: #00cc66;
+      color: #ffffff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .buy-button:hover {
+      background-color: #00994d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="SynxFinal.png" alt="SynxWorks Logo" width="150" height="150" />
+    </a>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="TermsOfService.html">Terms</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="store-container">
+
+      <!-- PRODUCT 1 -->
+      <div class="product-card">
+        <h2>Starter Website Package</h2>
+        <p>A clean, professional 1-page website built with responsive HTML & CSS. Fast delivery and mobile-friendly design. Perfect for freelancers and small businesses.</p>
+        <div class="price">$150</div>
+        <!-- Replace with real Stripe payment link -->
+        <a class="buy-button" href="https://buy.stripe.com/test_xxx">Buy Now</a>
+      </div>
+
+      <!-- Placeholder for future products -->
+      <!--
+      <div class="product-card">
+        <h2>Coming Soon</h2>
+        <p>More packages will be available shortly. Stay tuned!</p>
+        <div class="price">$TBD</div>
+        <a class="buy-button" href="#">Coming Soon</a>
+      </div>
+      -->
+
+    </section>
+  </main>
+
+  <footer style="text-align: center; padding: 20px;">
+    <p><a href="TermsOfService.html">Terms & Policies</a></p>
+    <p>© 2025 SynxWorks. All rights reserved.</p>
+  </footer>
+</body>
+</html>
