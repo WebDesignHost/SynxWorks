@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Path</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="docs/assets/images/favicon.png" type="image/x-icon">
+
+    <!-- Styles & Scripts -->
+    <link rel="stylesheet" href="docs/Style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.1/dist/lenis.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+
+
+<body class="">
+
+    <div id="global-loader"
+        class="hidden transition-opacity duration-300 opacity-0 fixed inset-0 bg-zinc-100 flex justify-center items-center z-50">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#54afe4]"></div>
+    </div>
+
+    <div id="bottomToTopScroll"></div>
+    <div id="navbar"></div>
+
+
+    <section class="bannerAbout md:min-h-[30rem] min-h-96 bg-center bg-cover">
+        <div
+            class="mx-auto max-w-7xl pt-20 px-4 sm:px-6 lg:px-8 relative text-center md:min-h-[30rem] min-h-96 flex items-center justify-center flex-col">
+            <h2 data-aos="fade-up" data-aos-delay="100"
+                class="max-w-5xl Montserrat textShadow  mx-auto text-zinc-200 text-center font-bold text-4xl text-gray-900 mb-5 md:text-6xl capitalize leading-tight">
+                About BrightPath
+            </h2>
+            <p data-aos="fade-up" data-aos-delay="200"
+                class="max-w-4xl text-zinc-300 textShadow mx-auto text-center text-base font-normal leading-7 md:text-lg tracking-wider mb-9">
+                Learn more about the experience, mission, and values behind our personalized tutoring approach.
+
+            </p>
+        </div>
+    </section>
+
+
+    <section class="py-24 relative">
+        <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
+            <div class="w-full justify-start items-center gap-12 grid lg:grid-cols-2 grid-cols-1">
+                <div
+                    class="w-full justify-center items-start gap-6 grid sm:grid-cols-2 grid-cols-1 lg:order-first order-last">
+                    <div class="md:pt-24 lg:justify-center sm:justify-end justify-start items-start gap-2.5 flex">
+                        <img class=" rounded-xl object-cover"
+                            src="https://images.unsplash.com/photo-1676837567059-3aa25ad73210?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3MlMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D"
+                            alt="about Us image" />
+                    </div>
+                    <img class="sm:ml-0 ml-auto rounded-xl object-cover"
+                        src="https://images.unsplash.com/photo-1610210752267-525f2160a313?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHRlYWNoaW5nfGVufDB8fDB8fHww"
+                        alt="about Us image" />
+                </div>
+                <div class="w-full flex-col justify-center lg:items-start items-center gap-10 inline-flex">
+                    <div class="w-full flex-col justify-center items-start gap-8 flex">
+                        <div class="w-full flex-col justify-start lg:items-start items-center gap-3 flex">
+                            <h2
+                                class="text-gray-900 text-3xl md:text-5xl font-semibold leading-normal lg:text-start text-center">
+                                About Me</h2>
+                            <p class="text-gray-500 text-base font-normal leading-relaxed lg:text-start text-center">
+                                Hi! I’m Aidan Lin, a former high school science teacher with over <b>8 years</b> of
+                                tutoring experience.
+                                I’ve worked with students of all levels and seen how much they can grow with the right
+                                support.
+                                In large classrooms, many students don’t get the personal attention they need to
+                                succeed.
+                                That’s why I started BrightPath—a tutoring service focused on one-on-one learning.
+                                <br><br>
+                                We create customized lessons that fit each student’s goals, pace, and learning style.
+                                Whether it's building confidence, catching up, or getting ahead, we're here to help.
+                                At BrightPath, every student gets the guidance they deserve to thrive.
+                            </p>
+                        </div>
+                        <div class="w-full md:text-start text-center lg:justify-start justify-center items-center sm:gap-10 gap-5 inline-flex">
+                            <div class="flex-col md:justify-start justify-center md:items-start items-center inline-flex">
+                                <h3 class="text-gray-900 text-4xl font-semibold leading-normal">8+</h3>
+                                <h6 class="text-gray-500 text-base font-normal leading-relaxed">Years of Experience</h6>
+                            </div>
+                            <div class="flex-col md:justify-start justify-center md:items-start items-center inline-flex">
+                                <h4 class="text-gray-900 text-4xl font-semibold leading-normal">98%</h4>
+                                <h6 class="text-gray-500 text-base font-normal leading-relaxed">Student Sanctification
+                                </h6>
+                            </div>
+                            <div class="flex-col md:justify-start justify-center md:items-start items-center inline-flex">
+                                <h4 class="text-gray-900 text-4xl font-semibold leading-normal">99%</h4>
+                                <h6 class="text-gray-500 text-base font-normal leading-relaxed">Flexibility</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="sm:w-fit w-full px-3.5 py-2 bg-[#54afe4] hover:opacity-80 transition-all duration-700 ease-in-out rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex">
+                        <span class="px-1.5 text-white text-sm font-medium leading-6">Read More</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full banner p-5 md:py-28 py-20 md:mt-16">
+        <div class=" grid md:grid-cols-2 grid-cols-1 gap-20 max-w-6xl md:flex-row flex-col mx-auto text-center w-full mx-auto">
+            <div class="">
+                <h2 data-aos="fade-up"
+                    class="text-center leading-tight font-semibold text-3xl md:text-5xl text-zinc-100">
+                    Mission Statement
+
+                </h2>
+                <p data-aos="fade-up" class="text-zinc-300 mx-auto text-center text-lg my-5">
+                    Every student learns differently. I focus on meeting them where they are and helping them grow with
+                    clarity and encouragement.
+                </p>
+            </div>
+            <div class="">
+                
+                <h2 data-aos="fade-up"
+                class="text-center leading-tight font-semibold text-3xl md:text-5xl text-zinc-100">
+                Credentials
+                
+            </h2>
+            <p data-aos="fade-up" class="text-zinc-300 mx-auto text-center text-lg my-5">
+               I have a B.S. in Biology from the University of Texas and over 8 years of private tutoring experience, along with time as a classroom teacher.
+            </p>
+             
+            </div>
+        </div>
+    </section>
+
+       <section class="w-full p-5 max-w-4xl mx-auto md:mt-16 mt-10">
+        <h2 data-aos="fade-up" class="text-zinc-900 font-semibold md:text-4xl text-center text-2xl">Frequently Asked
+            Questions</h2>
+
+        <div class="md:mt-14 mt-10">
+            <div class="border-b border-zinc-300 pb-6" data-aos="fade-up">
+                <button onclick="toggleAccordion(1)" class="w-full cursor-pointer flex justify-between items-center">
+                    <p class="text-lg text-start font-medium">What subjects do you tutor?
+
+                    </p>
+                    <i id="icon-1" class="fa-solid fa-angle-down text-gray-600 transition-transform duration-300"></i>
+                </button>
+                <div id="content-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="pt-3 text-zinc-600">
+                        We offer personalized tutoring in math (Algebra, Geometry, Precalculus), science (Biology,
+                        Chemistry, Physics), and test prep (SAT, ACT, and general study skills).
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 border-b border-zinc-300 pb-6" data-aos="fade-up">
+                <button onclick="toggleAccordion(2)" class="w-full cursor-pointer flex justify-between items-center">
+                    <p class="text-start text-lg font-medium">Who are your tutoring sessions for?
+                    </p>
+                    <i id="icon-2" class="fa-solid fa-angle-down text-gray-600 transition-transform duration-300"></i>
+                </button>
+                <div id="content-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="pt-3 text-zinc-600">
+                        Our sessions are designed for middle and high school students who need support in their
+                        coursework or are preparing for standardized tests.
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 border-b border-zinc-300 pb-6" data-aos="fade-up">
+                <button onclick="toggleAccordion(3)" class="w-full cursor-pointer flex justify-between items-center">
+                    <p class="text-start text-lg font-medium">How does scheduling work?
+
+                    </p>
+                    <i id="icon-3" class="fa-solid fa-angle-down text-gray-600 transition-transform duration-300"></i>
+                </button>
+                <div id="content-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="pt-3 text-zinc-600">
+                        We offer flexible scheduling to fit your family's needs, including evening and weekend
+                        availability. Just reach out to arrange a time that works for you.
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 border-b border-zinc-300 pb-6" data-aos="fade-up">
+                <button onclick="toggleAccordion(4)" class="w-full cursor-pointer flex justify-between items-center">
+                    <p class="text-start text-lg font-medium">What makes BrightPath different from other tutoring
+                        services?
+
+                    </p>
+                    <i id="icon-4" class="fa-solid fa-angle-down text-gray-600 transition-transform duration-300"></i>
+                </button>
+                <div id="content-4" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="pt-3 text-zinc-600">
+                        At BrightPath, students get patient, one-on-one attention from a highly experienced tutor who
+                        understands the challenges of today’s classrooms.
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 border-b border-zinc-300 pb-6" data-aos="fade-up">
+                <button onclick="toggleAccordion(5)" class="w-full cursor-pointer flex justify-between items-center">
+                    <p class="text-start text-lg font-medium">How do I get started?
+
+                    </p>
+                    <i id="icon-5" class="fa-solid fa-angle-down text-gray-600 transition-transform duration-300"></i>
+                </button>
+                <div id="content-5" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="pt-3 text-zinc-600">
+                        Getting started is easy! Just click “Contact Now” to schedule a free consultation and learn how
+                        we can help your student succeed.
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="md:mt-16 mt-10" id="footer"></div>
+
+
+    <script src="https://unpkg.com/lenis@1.3.1/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="docs/javascript/global.js"></script>
+    <script src="docs/javascript/navbar.js"></script>
+    <script src="docs/javascript/footer.js"></script>
+
+</body>
+
+</html>
