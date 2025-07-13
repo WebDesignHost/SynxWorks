@@ -270,42 +270,45 @@
   </style>
 
   <!-- Behavior -->
-  <script>
-    (function(){
-      const iframe  = document.querySelector('.synx-demo-iframe');
-      const preview = document.querySelector('.synx-preview');
-      const skeleton= document.querySelector('.synx-skeleton');
+<script>
+  (function(){
+    const iframe   = document.querySelector('.synx-demo-iframe');
+    const preview  = document.querySelector('.synx-preview');
+    const skeleton = document.querySelector('.synx-skeleton');
 
-      // Show live demo on play-click
-      preview.addEventListener('click', () => {
-        preview.style.display = 'none';
-        skeleton.style.display = 'none';   // ← hide the grey overlay
-        iframe.style.display  = 'block';
-      });
+    // Show live demo when the preview is clicked
+    preview.addEventListener('click', () => {
+      preview.style.display = 'none';
+      skeleton.style.display = 'none';
+      iframe.style.display  = 'block';
+    });
 
+    // When iframe loads, hide the skeleton and refresh AOS if available
+    iframe.addEventListener('load', () => {
+      skeleton.style.display = 'none';
       try {
-    const win = iframe.contentWindow;
-    if (win.AOS && typeof win.AOS.refresh === 'function') {
-      win.AOS.refresh();
-    }
-  } catch (err) {
-    console.warn('AOS refresh failed:', err);
-  }
-});
+        const win = iframe.contentWindow;
+        if (win.AOS && typeof win.AOS.refresh === 'function') {
+          win.AOS.refresh();
+        }
+      } catch (err) {
+        console.warn('AOS refresh failed in demo iframe:', err);
+      }
+    });
 
+    // Modal open/close
+    const openBtn  = document.querySelector('.synx-open-modal-btn');
+    const overlay  = document.querySelector('.synx-modal-overlay');
+    const closeBtn = document.querySelector('.synx-modal-close');
 
-      // Modal open/close
-      const openBtn  = document.querySelector('.synx-open-modal-btn');
-      const overlay  = document.querySelector('.synx-modal-overlay');
-      const closeBtn = document.querySelector('.synx-modal-close');
+    openBtn.addEventListener('click', () => overlay.classList.remove('synx-hidden'));
+    closeBtn.addEventListener('click', () => overlay.classList.add('synx-hidden'));
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) overlay.classList.add('synx-hidden');
+    });
+  })();
+</script>
 
-      openBtn.addEventListener('click', () => overlay.classList.remove('synx-hidden'));
-      closeBtn.addEventListener('click', () => overlay.classList.add('synx-hidden'));
-      overlay.addEventListener('click', e => {
-        if (e.target === overlay) overlay.classList.add('synx-hidden');
-      });
-    })();
-  </script>
 </section>
 
 
