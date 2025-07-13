@@ -277,11 +277,16 @@
     const skeleton = document.querySelector('.synx-skeleton');
 
     // Show live demo when the preview is clicked
-    preview.addEventListener('click', () => {
-      preview.style.display = 'none';
+   preview.addEventListener('click', () => {
+    preview.style.display = 'none';
+    iframe.style.display  = 'block';
+    // Only show the loader if the iframe isn't already fully loaded
+    if (iframe.contentDocument && iframe.contentDocument.readyState !== 'complete') {
       skeleton.style.display = 'block';
-      iframe.style.display  = 'block';
-    });
+    } else {
+      skeleton.style.display = 'none';
+    }
+  });
 
     // When iframe loads, hide the skeleton and refresh AOS if available
     iframe.addEventListener('load', () => {
