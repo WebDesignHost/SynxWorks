@@ -70,7 +70,7 @@
   <!-- Right: Framed Interactive Demo -->
   <div class="synx-device-frame">
     <!-- Skeleton loader -->
-    <div class="synx-skeleton"></div>
+    <div class="synx-skeleton" style="display:none;"></div>
     <!-- Preview overlay with play icon -->
     <div class="synx-preview">
       <div class="synx-play-icon">&#9658;</div>
@@ -279,7 +279,7 @@
     // Show live demo when the preview is clicked
     preview.addEventListener('click', () => {
       preview.style.display = 'none';
-      skeleton.style.display = 'none';
+      skeleton.style.display = 'block';
       iframe.style.display  = 'block';
     });
 
