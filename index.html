@@ -279,6 +279,7 @@
       // Show live demo on play-click
       preview.addEventListener('click', () => {
         preview.style.display = 'none';
+        skeleton.style.display = 'none';   // ← hide the grey overlay
         iframe.style.display  = 'block';
       });
 
