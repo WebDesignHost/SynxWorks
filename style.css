@@ -155,3 +155,43 @@ footer {
     max-width: 360px;
   }
 }
+/* === Subtle Animations === */
+
+/* 1. Fade-in effect for scroll reveals */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Smooth button hover scaling */
+.store-button {
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.store-button:hover,
+.store-button:focus {
+  transform: scale(1.05);
+}
+
+/* 3. Animated underline on nav links */
+nav a {
+  position: relative;
+  transition: color 0.2s ease;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #A4F731;
+  transition: width 0.3s ease;
+}
+nav a:hover::after {
+  width: 100%;
+}
