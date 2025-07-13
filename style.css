@@ -195,3 +195,21 @@ nav a::after {
 nav a:hover::after {
   width: 100%;
 }
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8; /* optional styling */
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 10px;
+}
+
+.footer-copy {
+  font-size: 0.9em;
+  color: #666;
+}
