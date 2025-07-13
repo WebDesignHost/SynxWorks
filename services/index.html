@@ -237,5 +237,22 @@
 
 </body>
   <footer id="site-footer"></footer>
+  <script>
+  // Helper to load a partial into a container
+  function includePartial(id, url) {
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error(`Failed to load ${url}`);
+        return res.text();
+      })
+      .then(html => document.getElementById(id).innerHTML = html)
+      .catch(console.error);
+  }
+
+  // Load header and footer
+  includePartial('site-header', '/partials/header.html');
+  includePartial('site-footer', '/partials/footer.html');
+</script>
+
 </body>
 </html>
