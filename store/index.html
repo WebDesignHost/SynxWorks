@@ -84,6 +84,23 @@
 
     </div>
   </section>
+    <section class="hosting-addon">
+  <h2>Add Hosting & Setup – $50</h2>
+  <p class="hosting-subtext">
+    Don’t want to deal with the tech? We’ll host your site and connect your domain. We handle everything for you.
+  </p>
+  <ul class="hosting-benefits">
+    <li>Fast, secure hosting with SSL</li>
+    <li>Setup and domain connection included</li>
+    <li>1 year free hosting</li>
+    <li>Includes minor fixes if needed</li>
+  </ul>
+  <label class="hosting-checkbox">
+    <input type="checkbox" id="add-hosting" />
+    <span>Add hosting to my order (+$50)</span>
+  </label>
+</section>
+
 
   <script>
     function toggleDetails(card) {
@@ -170,6 +187,57 @@
   margin: -2rem -2rem 1rem -2rem; /* pulls it to the edges */
   font-size: 0.9rem;
   letter-spacing: 0.5px;
+}
+-----------------------------------------------------------------
+    /* Hosting Add-On Section */
+.hosting-addon {
+  background-color: #ffffff;
+  color: #2d327d;
+  padding: 3rem 2rem;
+  margin: 2rem auto;
+  border-radius: 16px;
+  max-width: 720px;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.hosting-addon h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.hosting-subtext {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.hosting-benefits {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hosting-benefits li {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.hosting-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #2d327d;
+}
+
+.hosting-checkbox input[type="checkbox"] {
+  transform: scale(1.3);
+  accent-color: #A4F731;
+  cursor: pointer;
 }
 
   </style>
