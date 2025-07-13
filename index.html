@@ -282,25 +282,36 @@
         iframe.style.display  = 'block';
       });
 
+      try {
+    const win = iframe.contentWindow;
+    if (win.AOS && typeof win.AOS.refresh === 'function') {
+      win.AOS.refresh();
+    }
+  } catch (err) {
+    console.warn('AOS refresh failed:', err);
+  }
+});
+
       // On iframe load: hide skeleton + inject styles
       iframe.addEventListener('load', () => {
-        skeleton.style.display = 'none';
-        try {
-          const doc = iframe.contentDocument || iframe.contentWindow.document;
-          const style = doc.createElement('style');
-          style.innerHTML = `
-            body { background: #ffffff !important; }
-            html { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) rgba(0,0,0,0.05); }
-            ::-webkit-scrollbar { width: 6px; height: 6px; }
-            ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
-            ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
-          `;
-          doc.head.appendChild(style);
-        } catch(e) {
-          console.warn('Iframe style injection failed:', e);
-        }
-      });
+  skeleton.style.display = 'none';
+  try {
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    const style = doc.createElement('style');
+    style.innerHTML = `
+      /* … your iframe CSS overrides … */
+    `;
+    doc.head.appendChild(style);
 
+    // ← NEW: another AOS refresh after injecting styles
+    const win = iframe.contentWindow;
+    if (win.AOS && typeof win.AOS.refresh === 'function') {
+      win.AOS.refresh();
+    }
+  } catch(e) {
+    console.warn('Iframe style injection failed:', e);
+  }
+});
       // Modal open/close
       const openBtn  = document.querySelector('.synx-open-modal-btn');
       const overlay  = document.querySelector('.synx-modal-overlay');
