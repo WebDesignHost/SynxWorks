@@ -200,8 +200,13 @@ nav a:hover::after {
   padding: 20px;
   background-color: #f8f8f8; /* optional styling */
 }
-
 .footer-nav {
+  background-color: rgba(0, 0, 0, 0.12);
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.85rem;
+  color: #cccccc;
+  user-select: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
