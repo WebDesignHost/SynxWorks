@@ -6,94 +6,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Store — SynxWorks</title>
   <link rel="icon" type="image/png" href="../favicon-32x32.png" />
-  <meta name="description" content="Learn more about SynxWorks — your trusted partner for high-quality, fast website design." />  <style>
-    .store-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 40px 20px;
-      gap: 2rem;
+  <meta name="description" content="Learn more about SynxWorks — your trusted partner for high-quality, fast website design." />  
+  <body style="background-color: #2d327d; color: #000; font-family: 'Inter', sans-serif; padding: 2rem;">
+
+  <section style="max-width: 1200px; margin: 0 auto;">
+    <h1 style="color: #ffffff; text-align: center; margin-bottom: 2rem;">Simple Pricing, Built Around Your Needs</h1>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
+
+      <!-- Tier 1 - Starter -->
+      <div class="pricing-card" onclick="toggleDetails(this)">
+        <h2>Starter</h2>
+        <p class="sub">Perfect for solo freelancers who just need a strong, clean presence online.</p>
+        <p class="price">$225</p>
+        <div class="details">
+          <ul>
+            <li>Up to 3 pages (Home, About, Contact)</li>
+            <li>Mobile-friendly, fast-loading layout</li>
+            <li>Basic contact form integration</li>
+            <li>Hosting guidance included</li>
+            <li>Delivery in 5–7 days</li>
+          </ul>
+          <p>A polished starter site that makes you look legit — no tech skills required.</p>
+        </div>
+      </div>
+
+      <!-- Tier 2 - Pro -->
+      <div class="pricing-card recommended" onclick="toggleDetails(this)">
+        <h2>Pro</h2>
+        <p class="sub">For small businesses and service providers ready to level up their online presence.</p>
+        <p class="price">$300</p>
+        <div class="details">
+          <ul>
+            <li>Up to 5 custom pages</li>
+            <li>Custom layout styled to your brand</li>
+            <li>Contact form, Google Maps, social links</li>
+            <li>Calendar/booking option available</li>
+            <li>Full domain + hosting setup (optional)</li>
+            <li>Delivery in 5–10 days</li>
+          </ul>
+          <p>Everything you need to look professional and build client trust.</p>
+        </div>
+      </div>
+
+      <!-- Tier 3 - Premium -->
+      <div class="pricing-card" onclick="toggleDetails(this)">
+        <h2>Premium</h2>
+        <p class="sub">For professionals who want a hands-off process and extra polish.</p>
+        <p class="price">$400</p>
+        <div class="details">
+          <ul>
+            <li>6+ custom pages (portfolio, blog, etc.)</li>
+            <li>Refined layout & visual polish</li>
+            <li>Copy/image help if needed</li>
+            <li>Domain + hosting handled fully</li>
+            <li>14 days post-launch support</li>
+            <li>Delivery in 7–14 days</li>
+          </ul>
+          <p>All-in-one service for those who want their website done right from day one.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function toggleDetails(card) {
+      const isActive = card.classList.contains('active');
+      document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('active'));
+      if (!isActive) {
+        card.classList.add('active');
+      }
+    }
+  </script>
+
+  <style>
+    .pricing-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 350px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
 
-    .product-card {
-      background-color: #ffffff;
-      color: #000000;
-      max-width: 320px;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
-      text-align: left;
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
     }
 
-    .product-card h2 {
+    .pricing-card h2 {
+      margin-top: 0;
+      color: #2d327d;
       font-size: 1.5rem;
-      margin-bottom: 10px;
+      font-weight: 700;
     }
 
-    .product-card p {
-      font-size: 1rem;
-      margin-bottom: 16px;
-      line-height: 1.5;
+    .pricing-card .sub {
+      font-size: 0.95rem;
+      margin: 0.5rem 0 1rem;
+      color: #333333;
     }
 
-    .price {
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin-bottom: 12px;
+    .pricing-card .price {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #A4F731;
+      margin-bottom: 1rem;
     }
 
-    .buy-button {
-      background-color: #00cc66;
-      color: #ffffff;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 8px;
-      display: inline-block;
-      font-weight: bold;
+    .pricing-card .details {
+      display: none;
+      margin-top: 1rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+      color: #444;
     }
 
-    .buy-button:hover {
-      background-color: #00994d;
+    .pricing-card.active .details {
+      display: block;
+    }
+
+    .pricing-card ul {
+      padding-left: 1rem;
+      margin: 0 0 1rem;
+    }
+
+    .pricing-card ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .recommended {
+      border: 2px solid #A4F731;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-card {
+        max-width: 100%;
+      }
     }
   </style>
-</head>
-<body>
-  <header>
-    <a href="https://synxworks.com">
-    <img src="../SynxFinal.png" alt="SynxWorks Logo" width="150" height="150" />
-    </a>
-    <div class="slogan">Smart sites. Delivered fast.</div>
-    <nav>
-      <a href="https://synxworks.com">Home</a>
-      <a href="https://synxworks.com/about">About</a>
-      <a href="https://synxworks.com/contact">Contact</a>
-      <a href="https://synxworks.com/legal">Terms of Use</a>
-    </nav>
-  </header>
-  <main>
-    <section class="store-container">
 
-      <!-- PRODUCT 1 -->
-      <div class="product-card">
-        <h2>Starter Website Package</h2>
-        <p>A clean, professional 1-page website built with responsive HTML & CSS. Fast delivery and mobile-friendly design. Perfect for freelancers and small businesses.</p>
-        <div class="price">$150</div>
-        <!-- Replace with real Stripe payment link -->
-        <a class="buy-button" href="https://buy.stripe.com/test_xxx">Buy Now</a>
-      </div>
-
-      <!-- Placeholder for future products -->
-      <!--
-      <div class="product-card">
-        <h2>Coming Soon</h2>
-        <p>More packages will be available shortly. Stay tuned!</p>
-        <div class="price">$TBD</div>
-        <a class="buy-button" href="#">Coming Soon</a>
-      </div>
-      -->
-
-    </section>
-  </main>
+</body>
   <footer>
   <nav>
     <a href="https://synxworks.com">Home</a>
