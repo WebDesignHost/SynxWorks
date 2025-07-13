@@ -1,6 +1,33 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  text-align: center;
+}
+
+section {
+  padding: 60px 0;
+}
+
+.benefit, .trust, .final-cta {
+  margin-bottom: 40px;
+}
+
+h1, h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
 
 body {
   margin: 0;
