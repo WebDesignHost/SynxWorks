@@ -54,52 +54,265 @@
   </section>
 <!--DEMO SITE-->
   <section class="synx-demo-section">
-  <div class="synx-demo-container">
+  <!-- Left: Text + CTAs -->
+  <div class="synx-demo-content">
+    <h2 class="synx-demo-title">BrightPath Tutoring Case Study</h2>
+    <p class="synx-demo-text">
+      BrightPath needed a clean, 3-page responsive site that conveys trust to parents and students. 
+      We delivered a mobile-first design in just 5 days, emphasizing clarity, easy navigation, and 
+      compelling calls-to-action. The result: a 20% drop in bounce rate and a 35% increase in inquiries 
+      within the first month.
+    </p>
+    <button class="synx-cta-btn">Book a Free Consultation</button>
+    <button class="synx-open-modal-btn">View Project Details</button>
+  </div>
+
+  <!-- Right: Framed Interactive Demo -->
+  <div class="synx-device-frame">
+    <!-- Skeleton loader -->
+    <div class="synx-skeleton"></div>
+    <!-- Preview overlay with play icon -->
+    <div class="synx-preview">
+      <div class="synx-play-icon">&#9658;</div>
+    </div>
+    <!-- Live iframe -->
     <iframe
       class="synx-demo-iframe"
-      src="/demos/brightpath/index.html"
+      src="/demos/brightpath/index.html"  <!-- ← update this path -->
       title="BrightPath Interactive Demo"
       loading="lazy"
-      scrolling="yes"
+      style="display:none;"
     ></iframe>
   </div>
+
+  <!-- Disclaimer -->
   <p class="synx-demo-disclaimer">
     Disclaimer: All names, images, and branding in this interactive demo have been changed to protect client confidentiality.
   </p>
 
+  <!-- Case-Study Modal -->
+  <div class="synx-modal-overlay synx-hidden">
+    <div class="synx-modal">
+      <button class="synx-modal-close">&times;</button>
+      <h3>BrightPath Project Details</h3>
+      <p>
+        Here you can describe process steps, challenges &amp; solutions, client feedback, and additional screenshots.
+      </p>
+    </div>
+  </div>
+
+  <!-- Styles -->
   <style>
-    /* Container around the demo iframe */
+    /* Container & layout */
     .synx-demo-section {
+      --synx-accent: #00aaff;            /* ← your brand accent */
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
       margin: 2rem auto;
-      text-align: center;
+      max-width: 1200px;
+      padding: 0 1rem;
     }
-    .synx-demo-container {
-      width: 100%;
+    @media (max-width: 800px) {
+      .synx-demo-section { flex-direction: column; }
+    }
+
+    /* Text column */
+    .synx-demo-content {
+      flex: 1 1 300px;
+      max-width: 400px;
+      text-align: left;
+    }
+    .synx-demo-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .synx-demo-text {
+      color: #333;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .synx-cta-btn, .synx-open-modal-btn {
+      display: inline-block;
+      margin: 0 0.5rem 0.5rem 0;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid var(--synx-accent);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--synx-accent);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .synx-cta-btn:hover, .synx-open-modal-btn:hover {
+      background: var(--synx-accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Device-style frame */
+    .synx-device-frame {
+      position: relative;
+      flex: 1 1 400px;
       max-width: 800px;
-      margin: 0 auto;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      /* let the iframe itself scroll */
+      border: 2px solid var(--synx-accent);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+    .synx-device-frame:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    /* Loading skeleton */
+    .synx-skeleton {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
+      background-size: 400% 100%;
+      animation: synx-loading 1.5s ease-in-out infinite;
+      z-index: 4;
+    }
+    @keyframes synx-loading {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Preview overlay */
+    .synx-preview {
+      position: absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 5;
+    }
+    .synx-play-icon {
+      width: 60px; height: 60px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size: 2rem;
+      color: var(--synx-accent);
+    }
+
+    /* Live iframe */
     .synx-demo-iframe {
       width: 100%;
-      height: 600px;      /* fixed window height */
-      min-height: 400px;  /* ensure it’s usable on smaller screens */
+      height: 600px;
       border: none;
-      display: block;
-    }
-    .synx-demo-disclaimer {
-      font-size: 0.875rem;
-      color: #666;
-      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
     }
     @media (max-width: 600px) {
-      .synx-demo-iframe {
-        height: 500px;
-      }
+      .synx-demo-iframe { height: 500px; }
     }
+
+    /* Scroll hint shadows */
+    .synx-device-frame::before,
+    .synx-device-frame::after {
+      content: "";
+      position: absolute;
+      left: 0; width: 100%; height: 20px;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .synx-device-frame::before {
+      top: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+    }
+    .synx-device-frame::after {
+      bottom: 0;
+      background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+    }
+
+    /* Disclaimer */
+    .synx-demo-disclaimer {
+      flex-basis: 100%;
+      text-align: center;
+      color: #666;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+    }
+
+    /* Modal */
+    .synx-modal-overlay {
+      position: fixed; top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.5);
+      display:flex; align-items:center; justify-content:center;
+      z-index: 10000;
+    }
+    .synx-modal {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      max-width: 600px;
+      max-height: 80%;
+      overflow: auto;
+      position: relative;
+    }
+    .synx-modal-close {
+      position: absolute;
+      top: 0.5rem; right: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .synx-hidden { display: none; }
   </style>
+
+  <!-- Behavior -->
+  <script>
+    (function(){
+      const iframe  = document.querySelector('.synx-demo-iframe');
+      const preview = document.querySelector('.synx-preview');
+      const skeleton= document.querySelector('.synx-skeleton');
+
+      // Show live demo on play-click
+      preview.addEventListener('click', () => {
+        preview.style.display = 'none';
+        iframe.style.display  = 'block';
+      });
+
+      // On iframe load: hide skeleton + inject styles
+      iframe.addEventListener('load', () => {
+        skeleton.style.display = 'none';
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          const style = doc.createElement('style');
+          style.innerHTML = `
+            body { background: #ffffff !important; }
+            html { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) rgba(0,0,0,0.05); }
+            ::-webkit-scrollbar { width: 6px; height: 6px; }
+            ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+            ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+          `;
+          doc.head.appendChild(style);
+        } catch(e) {
+          console.warn('Iframe style injection failed:', e);
+        }
+      });
+
+      // Modal open/close
+      const openBtn  = document.querySelector('.synx-open-modal-btn');
+      const overlay  = document.querySelector('.synx-modal-overlay');
+      const closeBtn = document.querySelector('.synx-modal-close');
+
+      openBtn.addEventListener('click', () => overlay.classList.remove('synx-hidden'));
+      closeBtn.addEventListener('click', () => overlay.classList.add('synx-hidden'));
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) overlay.classList.add('synx-hidden');
+      });
+    })();
+  </script>
 </section>
 
 
