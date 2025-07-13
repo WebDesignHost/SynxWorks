@@ -52,9 +52,15 @@ function hideLoader() {
     }, Math.max(0, remainingTime));
 }
 
-// Example usage:
-showLoader();
-// simulate some async task (like fetch or form submission)
-setTimeout(() => {
-    hideLoader();
-}, 200); // even if task is fast, loader will stay at least 0.5s
+// --- REVISED ---
+// Only run the loader when this page isn't embedded in an iframe
+const isEmbedded = window.self !== window.top;
+
+if (!isEmbedded) {
+    // Example usage on standalone pages
+    showLoader();
+    // simulate some async task (like fetch or form submission)
+    setTimeout(() => {
+        hideLoader();
+    }, 200); // even if task is fast, loader will stay at least 0.5s
+}
