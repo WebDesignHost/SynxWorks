@@ -217,3 +217,23 @@ nav a:hover::after {
 .footer-copy {
   font-size: 0.9em;
 }
+
+
+.footer-legal {
+  text-align: center;    /* center it under the nav */
+  margin: 0.5rem 0;      /* some breathing room */
+}
+
+.footer-button {
+  display: inline-block;
+  padding: 0.3em 0.6em;   /* slightly smaller than nav links */
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.footer-button:hover {
+  background: rgba(0,0,0,0.05);
+}
