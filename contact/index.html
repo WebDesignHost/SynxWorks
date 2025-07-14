@@ -67,25 +67,30 @@
     try {
       const res = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form)
+        body: new FormData(form),
       });
 
-      if (res.ok) {
+      if (!res.ok) throw new Error('Network');
+
+      /* Success: fade out form, fade in message */
+      form.style.opacity = 0;
+      setTimeout(() => {
         form.innerHTML = `
           <p class="success-msg">
-            Thanks — we’ll reply within one business day.
+            ✅&nbsp;Thanks for reaching out!<br>
+            We’ll review your message and reply within one business day.
           </p>`;
-      } else {
-        throw new Error('Network response was not OK');
-      }
+        form.style.opacity = 1;
+      }, 250);                // 250 ms fade timing
     } catch (err) {
       alert(
-        "Whoops — please email us directly at hello@synxworks.com while we fix this."
+        "Whoops — please email us at hello@synxworks.com while we look into this."
       );
       console.error(err);
     }
   });
 </script>
+
 
 <!-- quick utility styles (optional — tweak or merge with your CSS) -->
 <style>
@@ -109,6 +114,9 @@
   .success-msg       { font-size: 1.1rem; color: #1a7f37; }
   .optional          { font-weight: 400; font-size: 0.9rem; color: #666; }
   .hp-field          { display: none !important; } /* honeypot */
+  #contactForm { transition: opacity 0.25s ease; }
+.success-msg { font-size: 1.15rem; color: #1a7f37; line-height: 1.4; }
+
 </style>
 
 
