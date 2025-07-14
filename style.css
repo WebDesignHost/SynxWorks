@@ -61,7 +61,7 @@ header {
   font-size: 1rem;
   font-weight: 500;
   font-style: italic;
-  color: #2C3E50;
+  color: #A4f731;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -75,7 +75,7 @@ nav {
 }
 
 nav a {
-  color: #2C3E50;
+  color: #A4f731;
   font-weight: 600;
   text-decoration: none;
   font-size: 1.1rem;
@@ -105,7 +105,7 @@ main {
 /* Store button */
 .store-button {
   background-color: #A4f731;
-  color: #2C3E50;
+  color: #A4f731;
   border: none;
   padding: 1.15rem 2.25rem;
   font-weight: 700;
