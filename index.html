@@ -276,19 +276,19 @@
     const preview  = document.querySelector('.synx-preview');
     const skeleton = document.querySelector('.synx-skeleton');
 
-    // Show live demo when the preview is clicked
-   preview.addEventListener('click', () => {
-    preview.style.display = 'none';
-    iframe.style.display  = 'block';
-    // Only show the loader if the iframe isn't already fully loaded
-    if (iframe.contentDocument && iframe.contentDocument.readyState !== 'complete') {
-      skeleton.style.display = 'block';
-    } else {
-      skeleton.style.display = 'none';
-    }
-  });
+    // 1) Show live demo when the preview is clicked
+    preview.addEventListener('click', () => {
+      preview.style.display = 'none';
+      iframe.style.display  = 'block';
+      // Display loader until the iframe document is fully loaded
+      if (iframe.contentDocument && iframe.contentDocument.readyState !== 'complete') {
+        skeleton.style.display = 'block';
+      } else {
+        skeleton.style.display = 'none';
+      }
+    });
 
-    // When iframe loads, hide the skeleton and refresh AOS if available
+    // 2) On iframe load: hide loader and trigger an initial AOS.refresh() inside iframe
     iframe.addEventListener('load', () => {
       skeleton.style.display = 'none';
       try {
@@ -297,11 +297,23 @@
           win.AOS.refresh();
         }
       } catch (err) {
-        console.warn('AOS refresh failed in demo iframe:', err);
+        console.warn('AOS refresh failed in iframe on load:', err);
       }
     });
 
-    // Modal open/close
+    // 3) Trigger AOS.refresh() inside iframe whenever the parent page scrolls
+    window.addEventListener('scroll', () => {
+      try {
+        const win = iframe.contentWindow;
+        if (win.AOS && typeof win.AOS.refresh === 'function') {
+          win.AOS.refresh();
+        }
+      } catch (err) {
+        // Cross-origin or timing errors can be safely ignored
+      }
+    });
+
+    // 4) Modal open/close behavior (unchanged from original)
     const openBtn  = document.querySelector('.synx-open-modal-btn');
     const overlay  = document.querySelector('.synx-modal-overlay');
     const closeBtn = document.querySelector('.synx-modal-close');
