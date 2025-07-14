@@ -272,69 +272,80 @@
   <!-- Behavior -->
 <!-- Behavior -->
 <script>
-  (function(){
-    const iframe   = document.querySelector('.synx-demo-iframe');
-    const preview  = document.querySelector('.synx-preview');
-    const skeleton = document.querySelector('.synx-skeleton');
+(function(){
+  const iframe   = document.querySelector('.synx-demo-iframe');
+  const preview  = document.querySelector('.synx-preview');
+  const skeleton = document.querySelector('.synx-skeleton');
 
-    // 1) Show live demo when the preview is clicked
-    preview.addEventListener('click', () => {
-      preview.style.display = 'none';
-      iframe.style.display  = 'block';
-      if (iframe.contentDocument && iframe.contentDocument.readyState !== 'complete') {
-        skeleton.style.display = 'block';
-      } else {
-        skeleton.style.display = 'none';
-      }
-    });
+  // Throttle helper
+  const throttleRAF = fn => {
+    let running = false;
+    return () => {
+      if (running) return;
+      running = true;
+      requestAnimationFrame(() => { fn(); running = false; });
+    };
+  };
 
-    // 2) On iframe load: hide loader, refresh AOS, then fire a scroll event
-    iframe.addEventListener('load', () => {
+  // 1) Click-to-show demo
+  preview.addEventListener('click', () => {
+    preview.style.display = 'none';
+    iframe.style.display  = 'block';
+    if (iframe.contentDocument && iframe.contentDocument.readyState !== 'complete') {
+      skeleton.style.display = 'block';
+    } else {
       skeleton.style.display = 'none';
-      try {
-        const win = iframe.contentWindow;
-        if (win.AOS && typeof win.AOS.refresh === 'function') {
-          win.AOS.refresh();                      // recalc offsets
-          win.dispatchEvent(new Event('scroll')); // actually trigger animations
-        }
-        // also listen for internal scrolls
-        win.addEventListener('scroll', () => {
-          try {
-            if (win.AOS && typeof win.AOS.refresh === 'function') {
-              win.AOS.refresh();
-              win.dispatchEvent(new Event('scroll'));
-            }
-          } catch (err) {
-            console.warn('AOS refresh in iframe failed:', err);
-          }
-        });
-      } catch (err) {
-        console.warn('Failed to hook AOS in iframe:', err);
-      }
-    });
+    }
+  });
 
-    // 3) On parent scroll: refresh + trigger inside‐iframe scroll
-    window.addEventListener('scroll', () => {
-      try {
-        const win = iframe.contentWindow;
-        if (win.AOS && typeof win.AOS.refresh === 'function') {
+  // 2) On iframe load: reliable AOS and fallbacks
+  iframe.addEventListener('load', () => {
+    skeleton.style.display = 'none';
+    try {
+      const win = iframe.contentWindow;
+      const doc = win.document;
+
+      // Use refreshHard if available, else refresh
+      if (win.AOS) {
+        if (typeof win.AOS.refreshHard === 'function') {
+          win.AOS.refreshHard();
+        } else if (typeof win.AOS.refresh === 'function') {
           win.AOS.refresh();
-          win.dispatchEvent(new Event('scroll'));
         }
-      } catch (err) {
-        // ignore timing or cross-origin
       }
-    });
 
-    // 4) Modal behavior (unchanged)
-    const openBtn  = document.querySelector('.synx-open-modal-btn');
-    const overlay  = document.querySelector('.synx-modal-overlay');
-    const closeBtn = document.querySelector('.synx-modal-close');
-    openBtn.addEventListener('click', () => overlay.classList.remove('synx-hidden'));
-    closeBtn.addEventListener('click', () => overlay.classList.add('synx-hidden'));
-    overlay.addEventListener('click', e => { if (e.target===overlay) overlay.classList.add('synx-hidden'); });
-  })();
+      // IntersectionObserver fallback to add aos-animate
+      const aosElems = doc.querySelectorAll('[data-aos]');
+      if ('IntersectionObserver' in win) {
+        const observer = new win.IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('aos-animate');
+          });
+        }, { threshold: 0.1 });
+        aosElems.forEach(el => observer.observe(el));
+      }
+
+      // Throttled scroll-based refresh
+      const refreshThrottle = throttleRAF(() => {
+        if (win.AOS && typeof win.AOS.refresh === 'function') win.AOS.refresh();
+      });
+      win.addEventListener('scroll', refreshThrottle);
+      window.addEventListener('scroll', refreshThrottle);
+    } catch (err) {
+      console.warn('AOS hook error in iframe:', err);
+    }
+  });
+
+  // 3) Modal unchanged
+  const openBtn  = document.querySelector('.synx-open-modal-btn');
+  const overlay  = document.querySelector('.synx-modal-overlay');
+  const closeBtn = document.querySelector('.synx-modal-close');
+  openBtn.addEventListener('click', () => overlay.classList.remove('synx-hidden'));
+  closeBtn.addEventListener('click', () => overlay.classList.add('synx-hidden'));
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.add('synx-hidden'); });
+})();
 </script>
+
 
 
 </section>
