@@ -30,6 +30,11 @@ AOS.init({
     duration: 1000
 });
 
+// Force AOS to recalculate positions once everything’s loaded
+window.addEventListener('load', () => {
+    AOS.refresh();       // or .refreshHard() if you want to reset all animations
+});
+
 // loader
 
 let loaderStartTime = 0;
