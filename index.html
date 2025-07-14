@@ -288,20 +288,31 @@
       }
     });
 
-    // 2) On iframe load: hide loader and trigger an initial AOS.refresh() inside iframe
+    // 2) On iframe load: hide loader, trigger initial AOS.refresh(), and listen for scroll inside iframe
     iframe.addEventListener('load', () => {
       skeleton.style.display = 'none';
       try {
         const win = iframe.contentWindow;
+        // Initial refresh
         if (win.AOS && typeof win.AOS.refresh === 'function') {
           win.AOS.refresh();
         }
+        // Listen for internal scroll events to refresh AOS
+        win.addEventListener('scroll', () => {
+          try {
+            if (win.AOS && typeof win.AOS.refresh === 'function') {
+              win.AOS.refresh();
+            }
+          } catch (err) {
+            console.warn('AOS refresh failed in iframe on scroll:', err);
+          }
+        });
       } catch (err) {
-        console.warn('AOS refresh failed in iframe on load:', err);
+        console.warn('Failed to set up AOS refresh in iframe:', err);
       }
     });
 
-    // 3) Trigger AOS.refresh() inside iframe whenever the parent page scrolls
+    // 3) Also trigger AOS.refresh() inside iframe whenever the parent page scrolls
     window.addEventListener('scroll', () => {
       try {
         const win = iframe.contentWindow;
@@ -313,7 +324,7 @@
       }
     });
 
-    // 4) Modal open/close behavior (unchanged from original)
+    // 4) Modal open/close behavior
     const openBtn  = document.querySelector('.synx-open-modal-btn');
     const overlay  = document.querySelector('.synx-modal-overlay');
     const closeBtn = document.querySelector('.synx-modal-close');
