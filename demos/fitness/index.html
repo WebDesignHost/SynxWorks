@@ -27,6 +27,27 @@
   <a href="#contact" class="fitness-cta-btn">Get My Own Site in 5 Days</a>
 </section>
 
+  <!-- Live‑demo + Benefits Section -->
+<section class="fitness-demo-wrap">
+  <!-- Iframe column -->
+  <div class="fitness-iframe-box">
+    <iframe src="" title="Live fitness coaching site demo" loading="lazy"></iframe>
+  </div>
+
+  <!-- Benefits column -->
+  <div class="fitness-benefits">
+    <h2 class="fitness-benefits-head">Why coaches love this flow</h2>
+    <ul class="fitness-benefits-list">
+      <li><strong>One link, zero DMs:</strong> clients self‑book & pay in under 2 min.</li>
+      <li><strong>Auto reschedules:</strong> clients move sessions themselves—your calendar stays synced.</li>
+      <li><strong>Instant payments:</strong> secure checkout means no more chasing invoices.</li>
+      <li><strong>Automated onboarding:</strong> waivers & forms complete before the first session.</li>
+      <li><strong>Unified alerts:</strong> booking updates land in one inbox—you coach, not admin.</li>
+    </ul>
+    <a href="#contact" class="fitness-cta-btn">Claim Your Site Now</a>
+  </div>
+</section>
+
 
 <style>
   /* ----------  Fitness palette section styles  ---------- */
@@ -79,6 +100,70 @@
   @media (min-width: 768px) {
     .fitness-hero-title { font-size: 3rem; }
     .fitness-hero-sub   { font-size: 1.25rem; }
+  }
+</style>
+
+   /* ----------  Live‑demo + benefits block  ---------- */
+  .fitness-demo-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: #121212;
+    padding: 3rem 1rem;
+  }
+
+  .fitness-iframe-box {
+    flex: 1 1 60%;
+    min-height: 600px;
+    border: 2px solid #FFD60A;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .fitness-iframe-box iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .fitness-benefits {
+    flex: 1 1 40%;
+    color: #FFFFFF;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .fitness-benefits-head {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #FFD60A;
+  }
+  .fitness-benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+  }
+  .fitness-benefits-list li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.75rem;
+    position: relative;
+  }
+  .fitness-benefits-list li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #FF9500;
+    font-weight: bold;
+  }
+
+  /* ----------  Responsive tweaks ---------- */
+  @media (min-width: 768px) {
+    .fitness-hero-title { font-size: 3rem; }
+    .fitness-hero-sub   { font-size: 1.25rem; }
+  }
+  @media (min-width: 992px) {
+    .fitness-demo-wrap { flex-direction: row; }
+    .fitness-benefits  { text-align: left; }
   }
 </style>
 
