@@ -301,3 +301,23 @@ nav a:hover::after {
     align-items: center;
   }
 }
+
+.quote-cta {
+    background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+    padding: 3rem 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-top: 3rem;
+  }
+
+  .quote-cta__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-cta__text {
+    font-size: 1.125rem;
+    color: #555;
+  }
