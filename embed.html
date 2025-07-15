@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BrightPath iframe host</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    /* Remove scroll bars around the iframe so the site feels native */
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;       /* parent page never scrolls */
+    }
+    #brightpath-frame {
+      border: 0;
+      width: 100%;
+      height: 100vh;          /* full viewport */
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <iframe
+    id="brightpath-frame"
+    src="https://synxworks.com/demos/brightpath/index.html"
+    title="BrightPath website"
+    scrolling="yes"
+    sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+  </iframe>
+
+  <!-- OPTIONAL: auto-resize the iframe if you’d rather let the parent scroll -->
+  <script>
+    // Works only if BrightPath lives on the *same origin*.
+    const iframe = document.getElementById('brightpath-frame');
+
+    function resizeIframe() {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        iframe.style.height = doc.documentElement.scrollHeight + 'px';
+      } catch (e) {
+        /* different origin ⇒ ignore (cannot access) */
+      }
+    }
+
+    iframe.addEventListener('load', resizeIframe);
+    window.addEventListener('resize', resizeIframe);
+  </script>
+</body>
+</html>
