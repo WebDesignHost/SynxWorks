@@ -263,3 +263,54 @@ nav a:hover::after {
     margin:0;
     font-size:1rem;
   }
+
+/* ────────────────────────────────────────────────────────────
+   How‑It‑Works cards (scoped .synx-*)                       */
+
+.synx-steps-section {
+  display: flex;           /* horizontal first */
+  flex-wrap: wrap;         /* auto‑wrap on narrow screens */
+  gap: 2rem;
+  justify-content: center;
+}
+
+.synx-step {
+  /* perfectly square card */
+  --synx-card-size: clamp(14rem, 22vw, 18rem);
+  flex: 1 1 var(--synx-card-size);
+  max-width: var(--synx-card-size);
+  aspect-ratio: 1 / 1;
+
+  /* visual design */
+  background: var(--color-surface-light, #fff);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.07));
+
+  /* content layout */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* animation starting state */
+  opacity: 0.2;
+  transform: translateY(30px);
+  transition: opacity 450ms ease-out, transform 450ms ease-out;
+}
+
+.synx-step.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.synx-step-title {
+  font-size: var(--font-size-h3, 1.25rem);
+  font-weight: 700; /* bold */
+  margin-bottom: 0.5rem;
+}
+
+.synx-step-desc {
+  font-size: var(--font-size-body, 1rem);
+}
