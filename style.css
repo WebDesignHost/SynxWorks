@@ -187,7 +187,7 @@ header {
   font-size: 1rem;
   font-weight: 500;
   font-style: italic;
-  color: #A4f731;
+  color: ##0a7dfe;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -201,7 +201,7 @@ nav {
 }
 
 nav a {
-  color: #A4f731;
+  color: ##0a7dfe;
   font-weight: 600;
   text-decoration: none;
   font-size: 1.1rem;
@@ -316,7 +316,7 @@ nav a::after {
   width: 0%;
   height: 3px;
   border-radius: 9999px;
-  background-color: #A4f731;
+  background-color: ##0a7dfe;
   transition: width 0.3s ease;
 }
 nav a:hover::after {
