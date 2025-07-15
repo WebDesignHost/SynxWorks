@@ -261,6 +261,7 @@ nav a:hover::after {
 
   /* visual design */
   background: var(--color-surface-light, #fff);
+  color: #2C3E50;
   border-radius: 8px;
   box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.07));
 
