@@ -23,17 +23,31 @@
       <p>Whether you’re a solo freelancer, a service provider, or a local business owner, our goal is the same: deliver a sharp, professional online presence that makes your brand look its best — without you needing to lift a finger.</p>
     </section>
 
-    <section>
       <h2>How It Works</h2>
-      <p>We keep things simple, so you don’t have to overthink it. Here’s what you can expect:</p>
-      <ul>
-        <li><strong>You tell us what you need.</strong> We’ll ask the right questions to keep it clear and straightforward.</li>
-        <li><strong>We build a site that fits your brand.</strong> Clean, modern, and built to reflect what you do best.</li>
-        <li><strong>You go live — and we’re here if you need anything.</strong> We don’t disappear once the site is launched.</li>
-      </ul>
-      <p>We believe websites should serve your business — not the other way around.</p>
-    </section>
+      <section class="synx-steps-section" id="how-it-works">
 
+  <div class="synx-step">
+    <h3 class="synx-step-title">1. Pick Your Perfect Plan</h3>
+    <p class="synx-step-desc">
+      Compare packages or request a lightning‑fast custom quote—no hidden fees.
+    </p>
+  </div>
+
+  <div class="synx-step">
+    <h3 class="synx-step-title">2. Share Your Vision</h3>
+    <p class="synx-step-desc">
+      Complete our 3‑minute brief &amp; upload any brand assets; we jump on a 15‑min kickoff call.
+    </p>
+  </div>
+
+  <div class="synx-step">
+    <h3 class="synx-step-title">3. Launch in 5‑7 Days</h3>
+    <p class="synx-step-desc">
+      Review, refine, and go live—hosting &amp; basic SEO setup included.
+    </p>
+  </div>
+
+</section>
     <section>
       <h2>Why People Work With Us</h2>
       <ul>
@@ -43,6 +57,25 @@
       </ul>
       <p>We don’t overpromise or overcomplicate — we just get the job done right.</p>
     </section>
+
+    <script>
+  /* ────────────────────────────────────────────────────────────
+     Fade‑in on scroll (native & lightweight) */
+  document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('.synx-step');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target); // reveal each step only once
+        }
+      });
+    }, { threshold: 0.4 }); // 40 % in view
+
+    steps.forEach(step => observer.observe(step));
+  });
+</script>
 
     <section>
       <p><em>We started SynxWorks to make good web design simple, not stressful. That’s still our core promise today.</em></p>
