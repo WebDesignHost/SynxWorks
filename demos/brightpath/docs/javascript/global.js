@@ -2,6 +2,15 @@ const lenis = new Lenis({
     autoRaf: true,
 });
 
+/* Let AOS know when Lenis scrolls */
+lenis.on('scroll', AOS.refresh);
+
+/* One hard refresh after everything is loaded */
+window.addEventListener('load', () => {
+  setTimeout(() => AOS.refreshHard(), 100);
+});
+
+
 const bottomToTopScroll = document.getElementById("bottomToTopScroll");
 
 bottomToTopScroll.innerHTML = `
