@@ -8,11 +8,11 @@ footer.innerHTML = `
                 </a>
                 <ul 
                     class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 pt-12 ">
-                    <li><a href="/index.html"
+                    <li><a href="/demos/brightpath/index.html"
                             class="text-gray-800 hover:opacity-80 transition-all duration-500">Home</a></li>
-                    <li><a href="/about.html"
+                    <li><a href="/demos/brightpath/about.html"
                             class=" text-gray-800 hover:opacity-80 transition-all duration-500">About Us</a></li>
-                    <li><a href="/contact.html"
+                    <li><a href="/demos/brightpath/contact.html"
                             class=" text-gray-800 hover:opacity-80 transition-all duration-500">Contact Us</a></li>
                 </ul>
                 <div class="flex items-center justify-center text-zinc-600 text-2xl gap-8 mt-7">
