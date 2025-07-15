@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Prevent accidental horizontal scrolling on mobile */
+html,
+body {
+    overflow-x: hidden;
+}
+
 * {
     box-sizing: border-box;
     outline: none;
@@ -15,19 +21,17 @@ a {
     user-select: none;
 }
 
+/* Reusable fade-in utility */
 .fadeIn {
-    animation: fadeIn 0.5s;
+    opacity: 0;                   /* start invisible */
+    animation: fadeIn 0.5s forwards ease-out;
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0);    }
 }
+
 
 .myShadow {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
