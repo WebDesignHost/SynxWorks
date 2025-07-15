@@ -6,7 +6,7 @@ const bottomToTopScroll = document.getElementById("bottomToTopScroll");
 
 bottomToTopScroll.innerHTML = `
 <div
-    class="bottomToTop fadeIn w-10 cursor-pointer z-40 bg-[#54afe4] h-10 fixed bottom-5 right-5 hover:opacity-80 transition-all duration-500 hidden text-zinc-100 flex items-center justify-center rounded-lg "><i class="fa-solid fa-angle-up"></i>
+    class="bottomToTop fadeIn w-10 cursor-pointer z-40 bg-[#54af...justify-center rounded-lg "><i class="fa-solid fa-angle-up"></i>
 </div>`
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("scroll", function () {
         if (window.scrollY > 200) {
-            scrollToTopBtn.style.display = "flex";
+            scrollToTopBtn.classList.remove("hidden");
         } else {
-            scrollToTopBtn.style.display = "none";
+            scrollToTopBtn.classList.add("hidden");
         }
     });
 
@@ -30,26 +30,26 @@ AOS.init({
     duration: 1000
 });
 
-// Force AOS to recalculate positions once everything’s loaded
-window.addEventListener('load', () => {
-    AOS.refresh();       // or .refreshHard() if you want to reset all animations
-});
-
-// loader
-
+// ------------------------------
+// Loader helpers
+// ------------------------------
 let loaderStartTime = 0;
 
 function showLoader() {
+    loaderStartTime = Date.now();
     const loader = document.getElementById('global-loader');
+    if (!loader) return;
+
     loader.classList.remove('hidden');
     requestAnimationFrame(() => loader.classList.add('opacity-100'));
-    loaderStartTime = Date.now();
 }
 
 function hideLoader() {
     const loader = document.getElementById('global-loader');
+    if (!loader) return;
+
     const elapsed = Date.now() - loaderStartTime;
-    const remainingTime = 500 - elapsed; // ensure at least 0.5s
+    const remainingTime = 500 - elapsed; // ensure at least 0.5s visible
 
     setTimeout(() => {
         loader.classList.remove('opacity-100');
@@ -57,15 +57,51 @@ function hideLoader() {
     }, Math.max(0, remainingTime));
 }
 
-// --- REVISED ---
-// Only run the loader when this page isn't embedded in an iframe
-const isEmbedded = window.self !== window.top;
+// Automatically hide the loader once page has fully loaded
+window.addEventListener('load', hideLoader);
 
-if (!isEmbedded) {
-    // Example usage on standalone pages
-    showLoader();
-    // simulate some async task (like fetch or form submission)
-    setTimeout(() => {
-        hideLoader();
-    }, 200); // even if task is fast, loader will stay at least 0.5s
+// ------------------------------
+// FAQ Accordion Functionality
+// ------------------------------
+/**
+ * Toggles an FAQ item’s visibility.
+ * Each button in the markup calls toggleAccordion(n) – we attach the function
+ * to the global scope so inline handlers keep working.
+ * If you prefer to remove inline JS, comment the last line and dispatch your
+ * own click listeners instead.
+ *
+ * @param {number} id – numeric identifier that matches the element IDs
+ *                      e.g. content-1 / icon-1.
+ */
+function toggleAccordion(id) {
+    const content = document.getElementById(`content-${id}`);
+    const icon = document.getElementById(`icon-${id}`);
+
+    if (!content || !icon) return;
+
+    // Collapse every other FAQ entry so only one is open at a time.
+    document.querySelectorAll('[id^="content-"]').forEach(el => {
+        if (el !== content) {
+            el.style.maxHeight = null;
+        }
+    });
+    document.querySelectorAll('[id^="icon-"]').forEach(ic => {
+        if (ic !== icon) {
+            ic.classList.remove('rotate-180');
+        }
+    });
+
+    if (content.style.maxHeight) {
+        // Close
+        content.style.maxHeight = null;
+        icon.classList.remove('rotate-180');
+    } else {
+        // Open
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.classList.add('rotate-180');
+    }
 }
+
+// Expose globally for existing inline handlers.
+window.toggleAccordion = toggleAccordion;
+
