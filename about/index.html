@@ -1,53 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="../style.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — SynxWorks</title>
   <meta name="description" content="Learn more about SynxWorks — your trusted partner for high-quality, fast website design." />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../style.css" />
   <link rel="icon" type="image/png" href="../favicon-48x48.png" />
 </head>
 <body>
 
   <header id="site-header"></header>
 
-
   <main>
-
     <section>
       <h1>About SynxWorks</h1>
       <p>At SynxWorks, we help independent professionals and small business owners get online with zero hassle. No tech headaches, no bloated jargon — just clean, reliable websites that do what you need them to.</p>
-
       <p>Whether you’re a solo freelancer, a service provider, or a local business owner, our goal is the same: deliver a sharp, professional online presence that makes your brand look its best — without you needing to lift a finger.</p>
     </section>
 
+    <section class="synx-steps-section" id="how-it-works">
       <h2>How It Works</h2>
-      <section class="synx-steps-section" id="how-it-works">
+      <div class="synx-step">
+        <h3 class="synx-step-title">1. Pick Your Perfect Plan</h3>
+        <p class="synx-step-desc">Compare packages or request a lightning‑fast custom quote—no hidden fees.</p>
+      </div>
+      <div class="synx-step">
+        <h3 class="synx-step-title">2. Share Your Vision</h3>
+        <p class="synx-step-desc">Complete our 3‑minute brief &amp; upload any brand assets; we jump on a 15‑min kickoff call.</p>
+      </div>
+      <div class="synx-step">
+        <h3 class="synx-step-title">3. Launch in 5‑7 Days</h3>
+        <p class="synx-step-desc">Review, refine, and go live—hosting &amp; basic SEO setup included.</p>
+      </div>
+    </section>
 
-  <div class="synx-step">
-    <h3 class="synx-step-title">1. Pick Your Perfect Plan</h3>
-    <p class="synx-step-desc">
-      Compare packages or request a lightning‑fast custom quote—no hidden fees.
-    </p>
-  </div>
-
-  <div class="synx-step">
-    <h3 class="synx-step-title">2. Share Your Vision</h3>
-    <p class="synx-step-desc">
-      Complete our 3‑minute brief &amp; upload any brand assets; we jump on a 15‑min kickoff call.
-    </p>
-  </div>
-
-  <div class="synx-step">
-    <h3 class="synx-step-title">3. Launch in 5‑7 Days</h3>
-    <p class="synx-step-desc">
-      Review, refine, and go live—hosting &amp; basic SEO setup included.
-    </p>
-  </div>
-
-</section>
     <section>
       <h2>Why People Work With Us</h2>
       <ul>
@@ -58,68 +45,45 @@
       <p>We don’t overpromise or overcomplicate — we just get the job done right.</p>
     </section>
 
-    <script>
-  /* ────────────────────────────────────────────────────────────
-     Fade‑in on scroll (native & lightweight) */
-  document.addEventListener('DOMContentLoaded', () => {
-    const steps = document.querySelectorAll('.synx-step');
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target); // reveal each step only once
-        }
-      });
-    }, { threshold: 0.4 }); // 40 % in view
-
-    steps.forEach(step => observer.observe(step));
-  });
-</script>
-
     <section>
       <p><em>We started SynxWorks to make good web design simple, not stressful. That’s still our core promise today.</em></p>
       <p><a href="/contact.html">Looking to get started? Reach out here.</a></p>
     </section>
-
   </main>
 
   <footer id="site-footer"></footer>
-<script>
-  // Helper to load a partial into a container
-  function includePartial(id, url) {
-    fetch(url)
-      .then(res => {
-        if (!res.ok) throw new Error(`Failed to load ${url}`);
-        return res.text();
-      })
-      .then(html => document.getElementById(id).innerHTML = html)
-      .catch(console.error);
-  }
-
-  // Load header and footer
-  includePartial('site-header', '/partials/header.html');
-  includePartial('site-footer', '/partials/footer.html');
-</script>
 
   <script>
-  (function () {
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target); // animate only once
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-    </script>
+    // Helper to load a partial into a container
+    function includePartial(id, url) {
+      fetch(url)
+        .then(res => {
+          if (!res.ok) throw new Error(`Failed to load ${url}`);
+          return res.text();
+        })
+        .then(html => document.getElementById(id).innerHTML = html)
+        .catch(console.error);
+    }
 
-  document.querySelectorAll(".synx-step").forEach(el => observer.observe(el));
-})();
-  
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load header and footer
+      includePartial('site-header', '/partials/header.html');
+      includePartial('site-footer', '/partials/footer.html');
+
+      // Fade‑in on scroll (native & lightweight)
+      const steps = document.querySelectorAll('.synx-step');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      steps.forEach(step => observer.observe(step));
+    });
+  </script>
 </body>
 </html>
 
