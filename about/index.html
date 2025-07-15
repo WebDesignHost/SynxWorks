@@ -102,6 +102,24 @@
   includePartial('site-footer', '/partials/footer.html');
 </script>
 
+  <script>
+  (function () {
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target); // animate only once
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+    </script>
+
+  document.querySelectorAll(".synx-step").forEach(el => observer.observe(el));
+})();
+  
 </body>
 </html>
 
