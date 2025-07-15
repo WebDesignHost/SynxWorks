@@ -299,18 +299,3 @@ nav a:hover::after {
   transform: translateY(30px);
   transition: opacity 450ms ease-out, transform 450ms ease-out;
 }
-
-.synx-step.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.synx-step-title {
-  font-size: var(--font-size-h3, 1.25rem);
-  font-weight: 700; /* bold */
-  margin-bottom: 0.5rem;
-}
-
-.synx-step-desc {
-  font-size: var(--font-size-body, 1rem);
-}
