@@ -21,31 +21,17 @@
   </style>
 </head>
 
-<body>
-  <iframe
-    id="brightpath-frame"
-    src="https://synxworks.com/demos/brightpath/index.html"
-    title="BrightPath website"
-    scrolling="yes"
-    sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
-  </iframe>
+<body class="flex items-center justify-center min-h-screen bg-slate-50">
 
-  <!-- OPTIONAL: auto-resize the iframe if you’d rather let the parent scroll -->
-  <script>
-    // Works only if BrightPath lives on the *same origin*.
-    const iframe = document.getElementById('brightpath-frame');
+  <div class="w-full max-w-4xl aspect-video shadow-2xl rounded-2xl overflow-hidden">
+    <iframe
+      src="demos/brightpath/index.html"
+      title="BrightPath website"
+      class="w-full h-full border-0"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+    </iframe>
+  </div>
 
-    function resizeIframe() {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        iframe.style.height = doc.documentElement.scrollHeight + 'px';
-      } catch (e) {
-        /* different origin ⇒ ignore (cannot access) */
-      }
-    }
-
-    iframe.addEventListener('load', resizeIframe);
-    window.addEventListener('resize', resizeIframe);
-  </script>
 </body>
+
 </html>
