@@ -191,7 +191,7 @@ nav a::after {
   width: 0%;
   height: 3px;
   border-radius: 9999px;
-  background-color: ##0a7dfe;
+  background-color: #0a7dfe;
   transition: width 0.3s ease;
 }
 nav a:hover::after {
