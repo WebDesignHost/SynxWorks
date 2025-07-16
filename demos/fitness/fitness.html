@@ -556,6 +556,21 @@
                 flex-direction: column;
                 gap: 20px;
             }
+
+            /* 1. Let the image sit flush against the edges */
+.service-image {
+    padding: 0;          /* kill the 10‑px gap */
+    overflow: hidden;    /* crops anything that spills out */
+}
+
+/* 2. Make any <img> inside stretch and crop like a cover photo */
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* fills the box while keeping aspect ratio */
+    display: block;      /* removes the tiny inline‑image gap */
+}
+
         }
     </style>
 </head>
@@ -805,4 +820,5 @@
     </script>
 </body>
 </html>
+
 
