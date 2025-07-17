@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Fitness - Transform Your Life</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Fitness – Transform Your Life</title>
+
+    <!--
+        =====================================================
+        Core Reset / Base
+        =====================================================-->
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+        :root {
+            /* Palette */
+            --clr-dark: #2c2c2c;
+            --clr-dark-2: #1a1a1a;
+            --clr-mid: #4a4a4a;
+            --clr-brand: #ff5722;
+            --clr-brand-dark: #e64a19;
+            --clr-text: #333;
+            --clr-muted: #ccc;
+            --radius: 8px;
         }
 
-        /* Header Section */
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--clr-text);
+        }
+
+        img {
+            display: block; /* remove inline‑img gap  */
+            border: none;
+        }
+
+        /*
+        =====================================================
+        Header / Navigation
+        =====================================================*/
         .header {
-            background: #2c2c2c;
+            background: var(--clr-dark);
             padding: 15px 0;
             position: sticky;
             top: 0;
@@ -28,593 +53,271 @@
 
         .nav-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin-inline: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding-inline: 20px;
         }
 
         .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
             font-style: italic;
         }
 
         .nav-links {
-            display: flex;
             list-style: none;
-            gap: 30px;
+            display: flex;
+            gap: 2rem;
         }
 
         .nav-links a {
-            color: white;
+            color: #fff;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 0.875rem;
             transition: color 0.3s;
         }
+        .nav-links a:hover { color: var(--clr-brand); }
 
-        .nav-links a:hover {
-            color: #ff5722;
-        }
-
+        /*  Buttons  */
         .nav-buttons {
             display: flex;
-            gap: 15px;
+            gap: 0.9375rem;
+        }
+        .btn,
+        button {
+            cursor: pointer;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            transition: all 0.3s;
         }
 
         .btn-join {
             background: none;
-            border: 1px solid white;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 0.5rem 1.25rem;
         }
-
         .btn-join:hover {
-            background: white;
-            color: #2c2c2c;
+            background: #fff;
+            color: var(--clr-dark);
         }
-
         .btn-signup {
-            background: #ff5722;
+            background: var(--clr-brand);
             border: none;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
+            color: #fff;
+            padding: 0.5rem 1.25rem;
+        }
+        .btn-signup:hover { background: var(--clr-brand-dark); }
+
+        /*  Mobile hamburger  */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
             cursor: pointer;
-            font-size: 14px;
-            transition: background 0.3s;
+        }
+        .nav-toggle span {
+            height: 3px;
+            width: 100%;
+            background: #fff;
+            border-radius: 2px;
         }
 
-        .btn-signup:hover {
-            background: #e64a19;
-        }
-
-        /* Hero Section */
+        /*
+        =====================================================
+        Hero
+        =====================================================*/
         .hero {
-            background: #4a4a4a;
-            padding: 80px 0;
-            color: white;
+            background: var(--clr-mid);
+            color: #fff;
+            padding: 5rem 0;
         }
-
         .hero-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin-inline: auto;
+            padding-inline: 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3.75rem;
             align-items: center;
-            padding: 0 20px;
         }
-
         .hero-content h1 {
-            font-size: 48px;
-            font-weight: bold;
-            margin-bottom: 30px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1.875rem;
             line-height: 1.2;
         }
-
         .hero-content p {
-            font-size: 16px;
-            margin-bottom: 30px;
-            color: #ccc;
-            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 1.875rem;
+            color: var(--clr-muted);
         }
 
-        .hero-image {
+        /*  Shared image‑container utility  */
+        .img-cover {
+            position: relative;
             width: 100%;
-            height: 400px;
-            background: #666;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 18px;
-            text-align: center;
-            padding: 10px;
+            height: 100%;
+            overflow: hidden;
+            border-radius: var(--radius);
+        }
+        .img-cover > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .dumbbell-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        /* Services Section */
+        /*  Services  */
         .services {
-            background: #ff5722;
-            padding: 80px 0;
-            color: white;
+            background: var(--clr-brand);
+            color: #fff;
+            padding: 5rem 0;
         }
-
         .services-container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            margin-inline: auto;
+            padding-inline: 20px;
         }
-
-        .services-header {
-            margin-bottom: 50px;
-        }
-
-        .services-label {
-            font-size: 14px;
-            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-
-        .services h2 {
-            font-size: 42px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            line-height: 1.2;
-        }
-
-        .services-description {
-            font-size: 16px;
-            line-height: 1.6;
-            opacity: 0.9;
-            max-width: 600px;
-        }
-
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.875rem;
+            margin-block: 3.125rem;
         }
-
         .service-card {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: var(--radius);
             overflow: hidden;
-        }
-
-        .service-image {
-            width: 100%;
-            height: 200px;
-            background: #666;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 16px;
-            text-align: center;
-            padding: 10px;
+            flex-direction: column;
+            height: 100%;
         }
+        .service-content { padding: 1.5625rem; }
+        .service-content h3 { font-size: 1.25rem; margin-bottom: 0.9375rem; }
+        .service-content p { font-size: 0.875rem; opacity: 0.9; }
 
-        .service-content {
-            padding: 25px;
-        }
-
-        .service-content h3 {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .service-content p {
-            font-size: 14px;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        .services-footer {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .learn-more {
-            background: none;
-            border: 1px solid white;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .learn-more:hover {
-            background: white;
-            color: #ff5722;
-        }
-
-        .learn-more-link {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .learn-more-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Testimonials Section */
+        /*  Testimonials  */
         .testimonials {
-            background: #4a4a4a;
-            padding: 80px 0;
-            color: white;
+            background: var(--clr-mid);
+            color: #fff;
+            padding: 5rem 0;
         }
-
-        .testimonials-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .testimonials h2 {
-            font-size: 42px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .testimonials-subtitle {
-            font-size: 16px;
-            color: #ccc;
-            margin-bottom: 50px;
-        }
-
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
-
         .testimonial-card {
-            padding: 30px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: var(--radius);
+            padding: 1.875rem;
         }
-
-        .stars {
-            color: #ffd700;
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-
-        .testimonial-text {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
         .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: #666;
+            --size: 50px;
+            width: var(--size);
+            height: var(--size);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 14px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            background: #666;
         }
+        .author-avatar img { object-fit: cover; width: 100%; height: 100%; }
 
-        .author-info h4 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .author-info p {
-            font-size: 14px;
-            color: #ccc;
-        }
-
-        .webflow-logo {
-            margin-left: auto;
-            color: #ccc;
-            font-size: 14px;
-        }
-
-        /* CTA Section */
+        /*  CTA  */
         .cta {
-            background: #2c2c2c;
-            padding: 80px 0;
-            color: white;
+            background: var(--clr-dark);
+            color: #fff;
+            padding: 5rem 0;
         }
-
         .cta-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin-inline: auto;
+            padding-inline: 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3.75rem;
             align-items: center;
-            padding: 0 20px;
         }
-
-        .cta-content h2 {
-            font-size: 42px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            line-height: 1.2;
-        }
-
-        .cta-text {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
+        .cta-buttons { display: flex; gap: 0.9375rem; flex-wrap: wrap; }
         .btn-primary {
-            background: #ff5722;
+            background: var(--clr-brand);
             border: none;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.3s;
+            color: #fff;
+            padding: 0.75rem 1.875rem;
         }
-
-        .btn-primary:hover {
-            background: #e64a19;
-        }
-
+        .btn-primary:hover { background: var(--clr-brand-dark); }
         .btn-secondary {
             background: none;
-            border: 1px solid white;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 0.75rem 1.875rem;
         }
+        .btn-secondary:hover { background: #fff; color: var(--clr-dark); }
 
-        .btn-secondary:hover {
-            background: white;
-            color: #2c2c2c;
-        }
-
-        /* Footer */
+        /*  Footer  */
         .footer {
-            background: #1a1a1a;
-            padding: 60px 0 30px;
-            color: white;
+            background: var(--clr-dark-2);
+            color: #fff;
+            padding: 3.75rem 0 1.875rem;
         }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
         .footer-content {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
         }
-
-        .footer-section h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section ul li a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-section ul li a:hover {
-            color: #ff5722;
-        }
-
-        .newsletter {
-            margin-bottom: 20px;
-        }
-
-        .newsletter p {
-            font-size: 14px;
-            color: #ccc;
-            margin-bottom: 15px;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #444;
-            background: #2c2c2c;
-            color: white;
-            border-radius: 4px;
-        }
-
-        .newsletter-btn {
-            background: #ff5722;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #ff5722;
-        }
-
         .footer-bottom {
             border-top: 1px solid #333;
-            padding-top: 30px;
+            padding-top: 1.875rem;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: #ccc;
+            gap: 0.9375rem;
+            font-size: 0.875rem;
+            color: var(--clr-muted);
         }
 
-        .footer-bottom-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-bottom-links a {
-            color: #ccc;
-            text-decoration: none;
-        }
-
-        .footer-bottom-links a:hover {
-            color: #ff5722;
-        }
-
-        /* Responsive Design */
+        /*
+        =====================================================
+        Responsive – Mobile Nav
+        =====================================================*/
         @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
             .nav-links {
-                display: none;
-            }
-
-            .hero-container,
-            .cta-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-bottom {
+                position: absolute;
+                right: 20px;
+                top: 60px;
+                background: var(--clr-dark);
                 flex-direction: column;
-                gap: 20px;
+                padding: 1rem;
+                border-radius: var(--radius);
+                width: 200px;
+                display: none; /* hidden by default */
             }
-
-            .service-image img {
-    position: absolute;  /* stretch across parent */
-    inset: 0;            /* top:0; right:0; bottom:0; left:0 */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;   /* edge‑to‑edge fill, crops excess  */
-    display: block;      /* kills the tiny inline‑img gap    */
-}
-            .hero-image {
-    width: 100%;
-    height: 400px;
-    background: #666;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    font-size: 18px;
-    overflow: hidden;
-}
-
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-            .author-avatar {
-    width: 50px;
-    height: 50px;
-    background: #666;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    font-size: 14px;
-    overflow: hidden;
-}
-
-.author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-
+            .nav-links.show { display: flex; }
+            .nav-buttons { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- ================================================= Header ================================================= -->
     <header class="header">
         <div class="nav-container">
             <div class="logo">Logo</div>
+            <button class="nav-toggle" aria-label="Open navigation" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
             <nav>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navMenu">
                     <li><a href="#home">Home Page</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#services">Services</a></li>
@@ -628,174 +331,170 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- ================================================= Hero ================================================= -->
+    <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="dumbbell-icon"></div>
                 <h1>Discover the Transformative Power of the 'Strong for Life' Philosophy</h1>
                 <p>Embrace the unique fitness approach that prioritizes strength, resilience, and overall wellness. With personalized guidance from Nova, you'll unlock your potential and achieve lasting results.</p>
             </div>
-            <div class="hero-image">
-                <img src="locked.jpg"/><!-- ======================== INSERT HERO IMAGE HERE ======================== -->
+            <div class="img-cover">
+                <img src="locked.jpg" alt="Athlete lifting weights" />
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services">
+    <!-- ================================================= Services ================================================= -->
+    <section class="services" id="services">
         <div class="services-container">
-            <div class="services-header">
-                <div class="services-label">Empower</div>
+            <header class="services-header">
+                <p class="services-label">Empower</p>
                 <h2>Transform Your Life with Personalized Coaching</h2>
                 <p class="services-description">At Coach Nova Forte Fitness, we believe in a tailored approach to wellness. Our coaching combines strength training, nutrition, and continuous support to help you thrive.</p>
-            </div>
-            
+            </header>
+
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="five.jpg"<!-- ======================== INSERT TRAINING IMAGE HERE ======================== -->
+                <article class="service-card">
+                    <div class="img-cover" style="height: 200px;">
+                        <img src="five.jpg" alt="Personal training session" />
                     </div>
                     <div class="service-content">
                         <h3>Personalized Training Plans Just for You</h3>
                         <p>Each plan is customized to fit your unique goals and fitness level.</p>
                     </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="salad.jpg"/><!-- ======================== INSERT NUTRITION IMAGE HERE ======================== -->
+                </article>
+
+                <article class="service-card">
+                    <div class="img-cover" style="height: 200px;">
+                        <img src="salad.jpg" alt="Healthy salad bowl" />
                     </div>
                     <div class="service-content">
                         <h3>Comprehensive Nutrition Guidance for Optimal Health</h3>
                         <p>We provide expert advice to fuel your body effectively.</p>
                     </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-image">
-                        <img src="friends.jpg"/><!-- ======================== INSERT SUPPORT IMAGE HERE ======================== -->
+                </article>
+
+                <article class="service-card">
+                    <div class="img-cover" style="height: 200px;">
+                        <img src="friends.jpg" alt="Supportive workout community" />
                     </div>
                     <div class="service-content">
                         <h3>Ongoing Support to Keep You Motivated</h3>
                         <p>Our community and coaching ensure you stay on track.</p>
                     </div>
-                </div>
+                </article>
             </div>
-            
-            <div class="services-footer">
-                <button class="learn-more">Join</button>
-                <a href="#" class="learn-more-link">Learn More →</a>
+
+            <div class="services-footer" style="display:flex; align-items:center; gap:1.25rem;">
+                <button class="learn-more btn">Join</button>
+                <a href="#" class="learn-more-link" style="color:#fff; text-decoration:none; font-size:0.875rem; display:flex; align-items:center; gap:0.5rem;">Learn More →</a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="testimonials-container">
-            <h2>Client Testimonials</h2>
-            <p class="testimonials-subtitle">Transformative coaching that truly makes a difference.</p>
-            
+    <!-- ================================================= Testimonials ================================================= -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container" style="max-width:1200px; margin-inline:auto; padding-inline:20px;">
+            <h2 style="font-size:clamp(2rem,4vw,2.625rem); font-weight:700; margin-bottom:1rem;">Client Testimonials</h2>
+            <p class="testimonials-subtitle" style="font-size:1rem; color:var(--clr-muted); margin-bottom:3.125rem;">Transformative coaching that truly makes a difference.</p>
+
             <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars"></div>
+                <article class="testimonial-card">
+                    <div class="stars" style="color:#ffd700; font-size:1.125rem; margin-bottom:1.25rem;">★★★★★</div>
                     <p class="testimonial-text">"Nova's approach changed my life for the better! Her support is unmatched."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">EJ</div>
+                    <footer class="testimonial-author" style="display:flex; align-items:center; gap:0.9375rem; margin-top:1.5625rem;">
+                        <div class="author-avatar"><img src="avatar1.jpg" alt="Emily Johnson" /></div>
                         <div class="author-info">
                             <h4>Emily Johnson</h4>
-                            <p>Marketing Manager, ABC Corp</p>
+                            <p style="font-size:0.875rem; color:var(--clr-muted);">Marketing Manager, ABC Corp</p>
                         </div>
-                        <div class="webflow-logo">Webflow</div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="stars"></div>
+                        <div class="webflow-logo" style="margin-left:auto; font-size:0.875rem; color:var(--clr-muted);">Webflow</div>
+                    </footer>
+                </article>
+
+                <article class="testimonial-card">
+                    <div class="stars" style="color:#ffd700; font-size:1.125rem; margin-bottom:1.25rem;">★★★★★</div>
                     <p class="testimonial-text">"I've never felt stronger or more confident in my life! Nova is a game changer."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MS</div>
+                    <footer class="testimonial-author" style="display:flex; align-items:center; gap:0.9375rem; margin-top:1.5625rem;">
+                        <div class="author-avatar"><img src="avatar2.jpg" alt="Mark Smith" /></div>
                         <div class="author-info">
                             <h4>Mark Smith</h4>
-                            <p>CEO, XYZ Inc</p>
+                            <p style="font-size:0.875rem; color:var(--clr-muted);">CEO, XYZ Inc</p>
                         </div>
-                        <div class="webflow-logo">Webflow</div>
-                    </div>
-                </div>
+                        <div class="webflow-logo" style="margin-left:auto; font-size:0.875rem; color:var(--clr-muted);">Webflow</div>
+                    </footer>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
+    <!-- ================================================= CTA ================================================= -->
+    <section class="cta" id="cta">
         <div class="cta-container">
             <div class="cta-content">
-                <h2>Unlock Your Fitness Potential</h2>
-                <p class="cta-text">Ready to transform your health and strength? Sign up for a free consultation or subscribe to our newsletter for expert fitness tips and the latest updates.</p>
+                <h2 style="font-size:clamp(2rem,4vw,2.625rem); font-weight:700; margin-bottom:1.875rem; line-height:1.2;">Unlock Your Fitness Potential</h2>
+                <p class="cta-text" style="font-size:1rem; color:var(--clr-muted); margin-bottom:1.875rem;">Ready to transform your health and strength? Sign up for a free consultation or subscribe to our newsletter for expert fitness tips and the latest updates.</p>
                 <div class="cta-buttons">
                     <button class="btn-primary">Learn More</button>
                     <button class="btn-secondary">Sign Up</button>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="curl.jpg"/><!-- ======================== INSERT CTA IMAGE HERE ======================== -->
+            <div class="img-cover">
+                <img src="curl.jpg" alt="Athlete doing bicep curl" />
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ================================================= Footer ================================================= -->
     <footer class="footer">
-        <div class="footer-container">
+        <div class="footer-container" style="max-width:1200px; margin-inline:auto; padding-inline:20px;">
             <div class="footer-content">
-                <div class="footer-section">
+                <section class="footer-section">
                     <div class="logo">Logo</div>
-                    <div class="newsletter">
-                        <p>Subscribe to our newsletter for the latest updates on features and events.</p>
-                        <div class="newsletter-form">
-                            <input type="email" class="newsletter-input" placeholder="Your email here">
-                            <button class="newsletter-btn">Join</button>
-                        </div>
-                        <p style="font-size: 12px; color: #999; margin-top: 10px;">By subscribing, you consent to our Privacy Policy and agree to receive updates.</p>
+                    <div class="newsletter" style="margin-block:1.25rem;">
+                        <p style="font-size:0.875rem; color:var(--clr-muted); margin-bottom:0.9375rem;">Subscribe to our newsletter for the latest updates on features and events.</p>
+                        <form class="newsletter-form" id="newsletterForm" style="display:flex; gap:0.625rem;">
+                            <input type="email" class="newsletter-input" placeholder="Your email here" required style="flex:1; padding:0.625rem; border:1px solid #444; background:var(--clr-dark); color:#fff; border-radius:4px;" />
+                            <button type="submit" class="newsletter-btn" style="background:var(--clr-brand); border:none; color:#fff; padding:0.625rem 1.25rem; border-radius:4px;">Join</button>
+                        </form>
+                        <p style="font-size:0.75rem; color:#999; margin-top:0.625rem;">By subscribing, you consent to our Privacy Policy and agree to receive updates.</p>
                     </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
+                </section>
+                <section class="footer-section">
+                    <h3 style="font-size:1.125rem; margin-bottom:1.25rem;">Quick Links</h3>
+                    <ul style="list-style:none; display:grid; gap:0.625rem;">
                         <li><a href="#home">Home Page</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#contact">Contact Us</a></li>
                         <li><a href="#blog">Blog Posts</a></li>
                         <li><a href="#faq">FAQs</a></li>
                     </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Connect With Us</h3>
-                    <ul>
+                </section>
+                <section class="footer-section">
+                    <h3 style="font-size:1.125rem; margin-bottom:1.25rem;">Connect With Us</h3>
+                    <ul style="list-style:none; display:grid; gap:0.625rem;">
                         <li><a href="#newsletter">Newsletter</a></li>
                         <li><a href="#feedback">Feedback</a></li>
                         <li><a href="#success">Success Stories</a></li>
                         <li><a href="#resources">Resources</a></li>
                         <li><a href="#community">Community</a></li>
                     </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Stay Connected</h3>
-                    <div class="social-links">
+                </section>
+                <section class="footer-section">
+                    <h3 style="font-size:1.125rem; margin-bottom:1.25rem;">Stay Connected</h3>
+                    <div class="social-links" style="display:flex; flex-wrap:wrap; gap:0.9375rem; margin-top:0.9375rem;">
                         <a href="#facebook">Facebook</a>
                         <a href="#instagram">Instagram</a>
                         <a href="#twitter">X</a>
                         <a href="#linkedin">LinkedIn</a>
                         <a href="#youtube">YouTube</a>
                     </div>
-                </div>
+                </section>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>© 2023 Coach Nova Forte. All rights reserved.</p>
-                <div class="footer-bottom-links">
+                <div class="footer-bottom-links" style="display:flex; gap:1.25rem;">
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#terms">Terms of Service</a>
                     <a href="#cookies">Cookie Settings</a>
@@ -804,55 +503,35 @@
         </div>
     </footer>
 
+    <!-- ================================================= Scripts ================================================= -->
     <script>
-        // Navigation functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+        // Mobile navigation toggle
+        const navToggle = document.getElementById("navToggle");
+        const navMenu = document.getElementById("navMenu");
+        navToggle.addEventListener("click", () => navMenu.classList.toggle("show"));
+
+        // Smooth scrolling for anchor links (excluding external)
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Button click handlers
-            document.querySelectorAll('.btn-join, .btn-signup, .btn-primary, .btn-secondary, .learn-more').forEach(button => {
-                button.addEventListener('click', function() {
-                    // Add your button functionality here
-                    console.log(`${this.textContent} button clicked`);
-                    // Example: redirect to sign-up page
-                    // window.location.href = '/signup';
-                });
-            });
-
-            // Newsletter form submission
-            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.querySelector('.newsletter-input').value;
-                if (email) {
-                    // Add newsletter signup functionality here
-                    console.log('Newsletter signup:', email);
-                    alert('Thank you for subscribing!');
-                    document.querySelector('.newsletter-input').value = '';
+                    target.scrollIntoView({ behavior: "smooth" });
+                    navMenu.classList.remove("show"); // close menu on link click (mobile)
                 }
             });
+        });
 
-            // Add active state to navigation
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
+        // Newsletter form handling
+        document.getElementById("newsletterForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector("input").value.trim();
+            if (email) {
+                alert(`Thank you for subscribing, ${email}!`);
+                e.target.reset();
+            }
         });
     </script>
 </body>
 </html>
-
 
