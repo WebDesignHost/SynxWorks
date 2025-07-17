@@ -120,6 +120,7 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     .navbar .logo {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--primary);
@@ -127,9 +128,11 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     }
     .navbar .logo-img {
       width: 40px;
-      height: 40px;
+      height: auto;
+      max-width: 40px;
       margin-right: 0.5rem;
-      object-fit: contain; 
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
   /* hide CTA button on mobile (outside of menu) */
