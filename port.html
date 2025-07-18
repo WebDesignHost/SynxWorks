@@ -1,315 +1,338 @@
 <!DOCTYPE html>
 <html>
   <head>
-<link rel="stylesheet" href="style.css" />
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<style>
-/* Portfolio Section */
-#portfolio {
-  padding: 60px 20px;
-}
-
-/* Header */
-.portfolio-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.portfolio-header h2 {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-.portfolio-header p {
-  font-size: 1rem;
-  color: #fff;
-}
-
-/* Grid */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-}
-.portfolio-item {
-  cursor: pointer;
-}
-.cover-image {
-  border-radius: 16px;
-  overflow: hidden;
-  aspect-ratio: 9/16;
-  background: #eee;
-}
-.cover-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.view-project {
-  display: block;
-  margin-top: 12px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  color: inherit;
-}
-
-/* Modal */
-.portfolio-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-}
-.portfolio-modal.active {
-  display: block;
-}
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-}
-/* 1) Make the modal taller than it is wide, filling most of the viewport */
-.modal-content {
-  width: 60vw;           /* adjust to taste */
-  height: 90vh;          /* fill 90% of viewport height */
-  max-width: 900px;      /* preserve your max width */
-  max-height: 90vh;      /* ensure it doesn’t overflow the screen */
-  display: flex;
-  flex-direction: column;
-}
-
-/* keep header and close‑button at the top, then body fills the rest */
-.modal-body {
-  flex: 1;
-  display: flex;
-  overflow: hidden;      /* hide any accidental overflow */
-}
-
-/* 2) & 3) Stack images vertically and allow only vertical scrolling */
-.modal-images {
-  flex: 0 0 60%;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;       /* vertical scroll OK */
-  overflow-x: hidden;     /* no more horizontal scroll */
-  padding-right: 8px;     /* give a bit of breathing room for scrollbar */
-}
-
-/* Make sure each image fills the width and maintains aspect ratio */
-.modal-images img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 16px;
-}
-
-/* 3) Same for your bullet‑points column */
-.modal-details {
-  flex: 0 0 40%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-left: 20px;
-}
-
-/* 4) Hide all scrollbars (WebKit, Firefox, IE) */
-.modal-images::-webkit-scrollbar,
-.modal-details::-webkit-scrollbar {
-  display: none;
-}
-.modal-images {
-  -ms-overflow-style: none;    /* IE & Edge */
-  scrollbar-width: none;       /* Firefox */
-}
-.modal-details {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.modal-title {
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 1.5rem;
-  color: #000000;
-  background-color: #2455fa;
-}
-.modal-points {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin: 0;
-  color: #000000;
-  background-color: #2455fa;
-}
-
-/* Close Button */
-.modal-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-  .portfolio-body {
-    color: #fff;
-    background-color: #2455fa;
-  }
-</style>
-  <body class="portfolio-body">
-<section id="portfolio">
-  <div class="portfolio-header">
-    <h2>Our Portfolio</h2>
-    <p>Discover the websites we’ve built to drive growth and engagement.</p>
-  </div>
-
-  <div class="portfolio-grid">
-    <div class="portfolio-item" data-index="0">
-      <div class="cover-image">
-        <img src="fitness.png" alt="Nova Fiore Fitness Cover">
-      </div>
-      <a href="https://synxworks.com/demos/fitness" class="view-project" target="_blank" rel="noopener">
-        View Project
-      </a>
-    </div>
-    <div class="portfolio-item" data-index="1">
-      <div class="cover-image">
-        <img src="landscape.png" alt="Evergreen Earthworks Landscaping Cover">
-      </div>
-      <a href="https://synxworks.com/demos/landscape" class="view-project" target="_blank" rel="noopener">
-        View Project
-      </a>
-    </div>
-    <div class="portfolio-item" data-index="2">
-      <div class="cover-image">
-        <img src="path/to/cover3.jpg" alt="Project 3 Cover">
-      </div>
-      <a href="https://example.com/project3" class="view-project" target="_blank" rel="noopener">
-        View Project
-      </a>
-    </div>
-    <!-- Add more .portfolio-item blocks here (just increment data-index) -->
-  </div>
-
-  <!-- Modal -->
-  <div id="portfolioModal" class="portfolio-modal">
-    <div id="modalOverlay" class="modal-overlay"></div>
-    <div class="modal-content">
-      <button id="modalClose" class="modal-close">&times;</button>
-      <div class="modal-body">
-        <div class="modal-images">
-          <!-- JS will inject one or more <img> tags here -->
-        </div>
-        <div class="modal-details">
-          <h3 class="modal-title"></h3>
-          <ul class="modal-points"></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Define your projects here.  
-  // Match order/data-index to the .portfolio-item blocks above.
-  const projects = [
-    {
-      title: 'Nova Fiore Fitness',
-      images: [
-        'path/to/project1-1.jpg',
-        'path/to/project1-2.jpg'
-      ],
-      points: [
-        'Sleek design & color palate',
-        'Easy to navigate site',
-        'Showcases benefits of coaching'
-      ]
-    },
-    {
-      title: 'Evergreen Earthworks Landscaping',
-      images: [
-        'path/to/project2-1.jpg',
-        'path/to/project2-2.jpg'
-      ],
-      points: [
-        'Contact info displayed at top',
-        'Easy to follow layout',
-        'Space for testimonials'
-      ]
-    },
-    {
-      title: 'Project 3',
-      images: [
-        'path/to/project3-1.jpg',
-        'path/to/project3-2.jpg'
-      ],
-      points: [
-        'Placeholder note X',
-        'Placeholder note Y',
-        'Placeholder note Z'
-      ]
+  <style>
+    /* Portfolio Section */
+    #portfolio {
+      padding: 60px 20px;
     }
-    // …add more as needed
-  ];
 
-  const modal       = document.getElementById('portfolioModal');
-  const overlay     = document.getElementById('modalOverlay');
-  const closeBtn    = document.getElementById('modalClose');
-  const imgContainer= modal.querySelector('.modal-images');
-  const titleEl     = modal.querySelector('.modal-title');
-  const pointsEl    = modal.querySelector('.modal-points');
+    /* Header */
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .portfolio-header h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .portfolio-header p {
+      font-size: 1rem;
+      color: #fff;
+    }
 
-  document.querySelectorAll('.portfolio-item').forEach(item => {
-    // prevent the "View Project" link from bubbling up
-    const link = item.querySelector('.view-project');
-    link.addEventListener('click', e => e.stopPropagation());
+    /* Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .portfolio-item {
+      cursor: pointer;
+    }
+    .cover-image {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      background: #eee;
+    }
+    .cover-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .view-project {
+      display: block;
+      margin-top: 12px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      color: inherit;
+    }
 
-    item.addEventListener('click', () => {
-      const idx = parseInt(item.dataset.index, 10);
-      const proj = projects[idx];
-      if (!proj) return;
+    /* Modal */
+    .portfolio-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+    .portfolio-modal.active {
+      display: block;
+    }
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+    }
 
-      // fill title
-      titleEl.textContent = proj.title;
+    /* 1) Center the modal and make it taller than it is wide */
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50vw;
+      max-width: 700px;
+      height: 90vh;   
+      max-height: 90vh;
+      background: #2455fa;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+    }
 
-      // fill images
-      imgContainer.innerHTML = '';
-      proj.images.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = proj.title;
-        imgContainer.appendChild(img);
+    /* keep header and close‑button at the top, then body fills the rest */
+    .modal-body {
+      flex: 1;
+      display: flex;
+      overflow: hidden; /* hide any accidental overflow */
+    }
+
+    /* 2) & 3) Stack images vertically and allow only vertical scrolling */
+    .modal-images {
+      flex: 0 0 60%;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto; /* vertical scroll OK */
+      overflow-x: hidden; /* no more horizontal scroll */
+      padding-right: 8px; /* breathing room for scrollbar */
+    }
+    .modal-images img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    /* Same for bullet‑points column */
+    .modal-details {
+      flex: 0 0 40%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 20px;
+    }
+
+    /* 4) Hide all scrollbars (WebKit, Firefox, IE) */
+    .modal-images::-webkit-scrollbar,
+    .modal-details::-webkit-scrollbar {
+      display: none;
+    }
+    .modal-images {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .modal-details {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .modal-title {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+      color: #000000;
+      background-color: #2455fa;
+    }
+    .modal-points {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin: 0;
+      color: #000000;
+      background-color: #2455fa;
+    }
+
+    /* Close Button */
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .portfolio-body {
+      color: #fff;
+      background-color: #2455fa;
+    }
+  </style>
+
+  <body class="portfolio-body">
+    <section id="portfolio">
+      <div class="portfolio-header">
+        <h2>Our Portfolio</h2>
+        <p>Discover the websites we’ve built to drive growth and engagement.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-index="0">
+          <div class="cover-image">
+            <img src="fitness.png" alt="Nova Fiore Fitness Cover" />
+          </div>
+          <a
+            href="https://synxworks.com/demos/fitness"
+            class="view-project"
+            target="_blank"
+            rel="noopener"
+          >
+            View Project
+          </a>
+        </div>
+        <div class="portfolio-item" data-index="1">
+          <div class="cover-image">
+            <img
+              src="landscape.png"
+              alt="Evergreen Earthworks Landscaping Cover"
+            />
+          </div>
+          <a
+            href="https://synxworks.com/demos/landscape"
+            class="view-project"
+            target="_blank"
+            rel="noopener"
+          >
+            View Project
+          </a>
+        </div>
+        <div class="portfolio-item" data-index="2">
+          <div class="cover-image">
+            <img src="path/to/cover3.jpg" alt="Project 3 Cover" />
+          </div>
+          <a
+            href="https://example.com/project3"
+            class="view-project"
+            target="_blank"
+            rel="noopener"
+          >
+            View Project
+          </a>
+        </div>
+        <!-- Add more .portfolio-item blocks here (just increment data-index) -->
+      </div>
+
+      <!-- Modal -->
+      <div id="portfolioModal" class="portfolio-modal">
+        <div id="modalOverlay" class="modal-overlay"></div>
+        <div class="modal-content">
+          <button id="modalClose" class="modal-close">&times;</button>
+          <div class="modal-body">
+            <div class="modal-images">
+              <!-- JS will inject one or more <img> tags here -->
+            </div>
+            <div class="modal-details">
+              <h3 class="modal-title"></h3>
+              <ul class="modal-points"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Define your projects here.
+        // Match order/data-index to the .portfolio-item blocks above.
+        const projects = [
+          {
+            title: "Nova Fiore Fitness",
+            images: [
+              "path/to/project1-1.jpg",
+              "path/to/project1-2.jpg",
+            ],
+            points: [
+              "Sleek design & color palate",
+              "Easy to navigate site",
+              "Showcases benefits of coaching",
+            ],
+          },
+          {
+            title: "Evergreen Earthworks Landscaping",
+            images: [
+              "path/to/project2-1.jpg",
+              "path/to/project2-2.jpg",
+            ],
+            points: [
+              "Contact info displayed at top",
+              "Easy to follow layout",
+              "Space for testimonials",
+            ],
+          },
+          {
+            title: "Project 3",
+            images: [
+              "path/to/project3-1.jpg",
+              "path/to/project3-2.jpg",
+            ],
+            points: [
+              "Placeholder note X",
+              "Placeholder note Y",
+              "Placeholder note Z",
+            ],
+          },
+          // …add more as needed
+        ];
+
+        const modal = document.getElementById("portfolioModal");
+        const overlay = document.getElementById("modalOverlay");
+        const closeBtn = document.getElementById("modalClose");
+        const imgContainer = modal.querySelector(".modal-images");
+        const titleEl = modal.querySelector(".modal-title");
+        const pointsEl = modal.querySelector(".modal-points");
+
+        document.querySelectorAll(".portfolio-item").forEach((item) => {
+          // prevent the "View Project" link from bubbling up
+          const link = item.querySelector(".view-project");
+          link.addEventListener("click", (e) => e.stopPropagation());
+
+          item.addEventListener("click", () => {
+            const idx = parseInt(item.dataset.index, 10);
+            const proj = projects[idx];
+            if (!proj) return;
+
+            // fill title
+            titleEl.textContent = proj.title;
+
+            // fill images
+            imgContainer.innerHTML = "";
+            proj.images.forEach((src) => {
+              const img = document.createElement("img");
+              img.src = src;
+              img.alt = proj.title;
+              imgContainer.appendChild(img);
+            });
+
+            // fill bullet points
+            pointsEl.innerHTML = "";
+            proj.points.forEach((txt) => {
+              const li = document.createElement("li");
+              li.textContent = txt;
+              pointsEl.appendChild(li);
+            });
+
+            // show
+            modal.classList.add("active");
+          });
+        });
+
+        function closeModal() {
+          modal.classList.remove("active");
+        }
+
+        closeBtn.addEventListener("click", closeModal);
+        overlay.addEventListener("click", closeModal);
       });
-
-      // fill bullet points
-      pointsEl.innerHTML = '';
-      proj.points.forEach(txt => {
-        const li = document.createElement('li');
-        li.textContent = txt;
-        pointsEl.appendChild(li);
-      });
-
-      // show
-      modal.classList.add('active');
-    });
-  });
-
-  function closeModal() {
-    modal.classList.remove('active');
-  }
-
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', closeModal);
-});
-</script>
-</section>
+    </script>
   </body>
 </html>
