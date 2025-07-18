@@ -75,40 +75,62 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
 }
+/* 1) Make the modal taller than it is wide, filling most of the viewport */
 .modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #2455fa;
-  width: 80%;
-  max-width: 900px;
-  max-height: 90%;
-  border-radius: 8px;
-  overflow: hidden;
+  width: 60vw;           /* adjust to taste */
+  height: 90vh;          /* fill 90% of viewport height */
+  max-width: 900px;      /* preserve your max width */
+  max-height: 90vh;      /* ensure it doesn’t overflow the screen */
   display: flex;
   flex-direction: column;
 }
+
+/* keep header and close‑button at the top, then body fills the rest */
 .modal-body {
-  display: flex;
   flex: 1;
-  overflow: hidden;
+  display: flex;
+  overflow: hidden;      /* hide any accidental overflow */
 }
+
+/* 2) & 3) Stack images vertically and allow only vertical scrolling */
 .modal-images {
   flex: 0 0 60%;
   display: flex;
-  overflow-x: auto;
+  flex-direction: column;
+  overflow-y: auto;       /* vertical scroll OK */
+  overflow-x: hidden;     /* no more horizontal scroll */
+  padding-right: 8px;     /* give a bit of breathing room for scrollbar */
 }
+
+/* Make sure each image fills the width and maintains aspect ratio */
 .modal-images img {
-  flex-shrink: 0;
   width: 100%;
-  object-fit: cover;
+  height: auto;
+  margin-bottom: 16px;
 }
+
+/* 3) Same for your bullet‑points column */
 .modal-details {
   flex: 0 0 40%;
-  padding: 20px;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 20px;
 }
+
+/* 4) Hide all scrollbars (WebKit, Firefox, IE) */
+.modal-images::-webkit-scrollbar,
+.modal-details::-webkit-scrollbar {
+  display: none;
+}
+.modal-images {
+  -ms-overflow-style: none;    /* IE & Edge */
+  scrollbar-width: none;       /* Firefox */
+}
+.modal-details {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .modal-title {
   margin-top: 0;
   margin-bottom: 12px;
