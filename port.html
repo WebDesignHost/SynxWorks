@@ -46,13 +46,48 @@
       display: block;
     }
     .view-project {
-      display: block;
-      margin-top: 12px;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-      color: inherit;
-    }
+  position: relative;             /* for positioning the arrow */
+  display: inline-block;          /* shrink‑wrap to content */
+  padding: 0.5em 1em;             /* give it some breathing room */
+  color: #2455fa;                 /* your base color */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;    /* animate the text color */
+}
+
+/* underline “slide in” on hover */
+.view-project::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+/* little arrow after the text */
+.view-project::after {
+  content: "➔";                   /* or use →, ►, ⇒, etc. */
+  display: inline-block;
+  margin-left: 0.5em;
+  transform: translateX(-4px);    /* start slightly back */
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* hover state */
+.view-project:hover {
+  color: #1a42c9;                 /* darker shade on hover */
+}
+.view-project:hover::before {
+  width: 100%;                    /* expand the underline */
+}
+.view-project:hover::after {
+  transform: translateX(0);       /* slide arrow into place */
+  opacity: 1;
+}
 
     /* Modal */
     .portfolio-modal {
