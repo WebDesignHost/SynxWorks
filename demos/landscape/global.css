@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* Gap */
+  --gap-4: 4px;
+  --gap-12: 12px;
+  --gap-14: 14px;
+  --gap-16: 16px;
+  --gap-20: 20px;
+  --gap-24: 24px;
+  --gap-32: 32px;
+  --gap-40: 40px;
+  --gap-64: 64px;
+  --gap-80: 80px;
+
+  /* Padding */
+  --padding-6: 6px;
+  --padding-8: 8px;
+  --padding-12: 12px;
+  --padding-18: 18px;
+  --padding-20: 20px;
+  --padding-24: 24px;
+  --padding-32: 32px;
+  --padding-40: 40px;
+
+  /* BorderRadius */
+  --br-12: 12px;
+  --br-16: 16px;
+
+  /* Font */
+  --font-fraunces: Fraunces;
+  --font-lora: Lora;
+
+  /* FontSize */
+  --font-size-18: 18px;
+  --font-size-22: 22px;
+
+  /* Figma Variables */
+
+  /* Spacing */
+  --Stroke-Divider-Width: 1px;
+  --Text-Sizes-Text-Tiny: 12px;
+  --Text-Sizes-Text-Small: 14px;
+  --Text-Sizes-Text-Regular: 16px;
+  --Text-Sizes-Text-Medium: 18px;
+  --Text-Sizes-Heading-6: 22px;
+  --Text-Sizes-Text-Large: 22px;
+  --Text-Sizes-Heading-5: 28px;
+  --Text-Sizes-Heading-4: 36px;
+  --Text-Sizes-Heading-3: 44px;
+  --Text-Sizes-Heading-2: 52px;
+  --Page-Padding-padding-global: 64px;
+  --Text-Sizes-Heading-1: 72px;
+  --Section-Padding-padding-section-medium: 80px;
+  --Section-Padding-padding-section-large: 112px;
+  --Max-Width-max-width-medium: 560px;
+  --Max-Width-max-width-large: 768px;
+  --Container-container-large: 1280px;
+
+  /* Color */
+  --Opacity-Neutral-Darkest-60: rgba(13, 7, 0, 0.6);
+  --Color-Scheme-4-Background: #dad9d8;
+  --Color-Neutral-Darkest: #0d0700;
+  --Color-Scheme-1-Text: #0d0700;
+  --Color-Scheme-4-Text: #0d0700;
+  --Opacity-Transparent: rgba(255, 255, 255, 0);
+  --Color-Forest-Green: #228b22;
+  --Color-Scheme-1-Border: rgba(13, 7, 0, 0.15);
+  --Color-Scheme-3-Text: #fff;
+  --Color-Scheme-3-Background: #0d370d;
+  --Color-Scheme-5-Text: #fff;
+  --Color-Scheme-5-Background: #64ad64;
+  --Color-White: #fff;
+  --Color-Scheme-1-Background: #fff;
+  --Color-Vermilion: #ff4500;
+  --Opacity-Neutral-Darkest-15: rgba(13, 7, 0, 0.15);
+  --Opacity-Neutral-Darkest-5: rgba(13, 7, 0, 0.05);
+  --Color-Scheme-2-Border: rgba(255, 255, 255, 0.2);
+  --Color-Scheme-2-Text: #fff;
+  --Color-Scheme-2-Background: #0a290a;
+}
