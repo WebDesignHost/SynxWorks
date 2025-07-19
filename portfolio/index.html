@@ -12,6 +12,10 @@
 </head>
 
   <style>
+    body.modal-open #site-header {
+  display: none;
+}
+    
     /* Portfolio Section */
     #portfolio {
       padding: 60px 20px;
@@ -378,11 +382,13 @@
 
             // show
             modal.classList.add("active");
+            document.body.classList.add('modal-open');
           });
         });
 
         function closeModal() {
           modal.classList.remove("active");
+          document.body.classList.remove('modal-open');
         }
 
         closeBtn.addEventListener("click", closeModal);
