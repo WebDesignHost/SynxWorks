@@ -18,6 +18,219 @@
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     color: #fff;
 }
+    body.modal-open #site-header {
+  display: none;
+}
+    
+    /* Portfolio Section */
+    #portfolio {
+      padding: 60px 20px;
+    }
+
+    /* Header */
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .portfolio-header h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .portfolio-header p {
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    /* Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .portfolio-item {
+      cursor: pointer;
+    }
+    
+    .cover-image {
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      background: #eee;
+      transition: transform 0.3s ease-out,
+      box-shadow 0.3s ease-out;
+    }
+.cover-image:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+}
+    
+    .cover-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .view-project {
+  position: relative;             /* for positioning the arrow */
+  display: inline-block;          /* shrink‑wrap to content */
+  padding: 0.5em 1em;             /* give it some breathing room */
+  color: #fff;                 /* your base color */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;    /* animate the text color */
+}
+
+/* underline “slide in” on hover */
+.view-project::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+/* little arrow after the text */
+.view-project::after {
+  content: "➔";                   /* or use →, ►, ⇒, etc. */
+  display: inline-block;
+  margin-left: 0.5em;
+  transform: translateX(-4px);    /* start slightly back */
+  opacity: 0;
+  transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+/* hover state */
+.view-project:hover {
+  color: #fff;                 /* darker shade on hover */
+}
+.view-project:hover::before {
+  width: 100%;                    /* expand the underline */
+}
+.view-project:hover::after {
+  transform: translateX(0);       /* slide arrow into place */
+  opacity: 1;
+}
+
+    /* Modal */
+    .portfolio-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+    }
+    .portfolio-modal.active {
+      display: block;
+    }
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    /* 1) Center the modal and make it taller than it is wide */
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw;
+      max-width: 1200px;
+      height: 90vh;   
+      max-height: 90vh;
+      background: #2455fa;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;      /* or whatever radius you like */
+      overflow: hidden;
+      padding: 1.5rem;            /* space inside all around */
+      box-sizing: border-box;     
+    }
+
+    /* keep header and close‑button at the top, then body fills the rest */
+    .modal-body {
+      flex: 1;
+      display: flex;
+      overflow: hidden; /* hide any accidental overflow */
+    }
+
+    /* 2) & 3) Stack images vertically and allow only vertical scrolling */
+    .modal-images {
+      flex: 0 0 60%;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto; /* vertical scroll OK */
+      overflow-x: hidden; /* no more horizontal scroll */
+      padding-right: 8px; /* breathing room for scrollbar */
+    }
+    .modal-images img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    /* Same for bullet‑points column */
+    .modal-details {
+      flex: 0 0 40%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-left: 20px;
+    }
+
+    /* 4) Hide all scrollbars (WebKit, Firefox, IE) */
+    .modal-images::-webkit-scrollbar,
+    .modal-details::-webkit-scrollbar {
+      display: none;
+    }
+    .modal-images {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .modal-details {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .modal-title {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+      color: #fff;
+      background-color: #2455fa;
+    }
+    .modal-points {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin: 0;
+      color: #fff;
+      background-color: #2455fa;
+    }
+
+    /* Close Button */
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .portfolio-body {
+      color: #fff;
+      background-color: #2455fa;
+    }
     </style>
 </head>
 <body>
