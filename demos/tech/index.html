@@ -50,6 +50,13 @@
             transition: transform 0.3s ease;
         }
 
+        .logo img {
+  width: 120px;    /* or whatever max width you like */
+  max-width: 100%; /* never overflow its container */
+  height: auto;    /* preserve aspect ratio */
+  display: block;  /* removes any extra inline whitespace */
+}
+
         .logo:hover {
             transform: scale(1.05);
         }
