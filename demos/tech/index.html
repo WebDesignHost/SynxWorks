@@ -1,409 +1,1176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FlowPilot – AI-driven Marketing Automation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --color-primary: #0B8A79;
-      --color-secondary: #3F8CD6;
-      --color-light: #F9EBFE;
-      --color-dark: #333333;
-      --color-white: #FFFFFF;
-      --color-muted: #666666;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: var(--color-dark); }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowPilot - Transform Your Marketing with AI-Driven Workflow Automation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Layout Helpers */
-    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-    .text-center { text-align: center; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-    /* Header / Nav */
-    header { background: var(--color-white); position: sticky; top: 0; z-index: 1000;
-             box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
-    .logo { font-size: 1.5rem; font-weight: 600; color: var(--color-dark); }
-    .nav-links { list-style: none; display: flex; gap: 1.5rem; }
-    .nav-link { position: relative; font-weight: 500; transition: color 0.3s; }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 2px;
-      background: var(--color-primary);
-      transition: width 0.3s;
-    }
-    .nav-link:hover::after { width: 100%; }
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
 
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .btn-primary {
-      background: var(--color-primary);
-      color: var(--color-white);
-      border: none;
-    }
-    .btn-secondary {
-      background: transparent;
-      color: var(--color-white);
-      border: 2px solid var(--color-white);
-    }
-    .btn-primary:hover,
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
-    /* Section & Animation */
-    section {
-      padding: 4rem 0;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e40af;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
 
-    /* Hero */
-    .hero {
-      background: var(--color-primary) center/cover no-repeat;
-      color: var(--color-white);
-    }
-    .hero-content { max-width: 600px; }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    .hero p { font-size: 1.125rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9); }
-    .hero-buttons { display: flex; gap: 1rem; }
+        .logo:hover {
+            transform: scale(1.05);
+        }
 
-    /* Two‑column with image */
-    .two-col {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
-    /* Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .feature-card {
-      background: var(--color-white);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    .feature-card img { width: 40px; margin-bottom: 1rem; }
-    .feature-card h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
-    .feature-card p { color: var(--color-muted); margin-bottom: 1rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .stat-card {
-      display: flex;
-      gap: 1rem;
-      transition: transform 0.3s;
-    }
-    .stat-card:hover { transform: translateY(-3px); }
-    .stat-card img { width: 30px; margin-top: 5px; }
-    .stat-card h4 { margin-bottom: 0.5rem; }
+        .nav-links a:hover {
+            color: #1e40af;
+        }
 
-    /* Testimonials */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .testimonial {
-      background: var(--color-white);
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .testimonial:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    .testimonial .stars {
-      color: #FFC107;
-      margin-bottom: 0.75rem;
-      font-size: 1.1rem;
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1e40af;
+            transition: width 0.3s ease;
+        }
 
-    /* Footer */
-    footer { background: var(--color-white); color: var(--color-dark); }
-    .footer { padding: 2rem 0; }
-    .footer-links,
-    .social-icons { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; }
-    .footer-links a { color: var(--color-muted); transition: color 0.3s; }
-    .footer-links a:hover { color: var(--color-dark); }
-    .social-icons img { width: 24px; filter: grayscale(100%); transition: filter 0.3s; }
-    .social-icons img:hover { filter: none; }
-    .footer .small { font-size: 0.875rem; color: var(--color-muted); margin-top: 1.5rem; }
-  </style>
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(59,130,246,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInLeft 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: slideInLeft 1s ease 0.4s both;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .secondary-button:hover {
+            background: white;
+            color: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: slideInRight 1s ease 0.6s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Marketing Efforts Section */
+        .marketing-section {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            padding: 6rem 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .section-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+
+        .section-image {
+            position: relative;
+        }
+
+        .section-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Features Section */
+        .features-section {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            padding: 6rem 0;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-header .label {
+            color: #6b7280;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .features-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .features-header p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .section-links {
+            text-align: center;
+        }
+
+        .section-links a {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .section-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Efficiency Section */
+        .efficiency-section {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 6rem 0;
+        }
+
+        .efficiency-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .efficiency-header .label {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .efficiency-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .efficiency-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-card p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Workflow Section */
+        .workflow-section {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            padding: 6rem 0;
+        }
+
+        .workflow-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .workflow-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            padding: 6rem 0;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .testimonials-header p {
+            font-size: 1.1rem;
+            color: #6b7280;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #a855f7, #c084fc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .author-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 6rem 0;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #1e40af;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #1e40af;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-2px);
+            background: #3b82f6;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(107, 114, 128, 0.2);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: #6b7280;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #1e40af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-container,
+            .section-container,
+            .cta-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid,
+            .benefits-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Header / Nav -->
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo">Logo</div>
-        <ul class="nav-links">
-          <li><a href="#" class="nav-link">Home</a></li>
-          <li><a href="#" class="nav-link">Features</a></li>
-          <li><a href="#" class="nav-link">About Us</a></li>
-          <li><a href="#" class="nav-link">Contact</a></li>
-        </ul>
-        <a href="#" class="btn btn-primary">Get Started</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero section" style="background-image: url('');">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Transform Your Marketing with FlowPilot Today</h1>
-          <p>Unlock the power of AI-driven workflow automation to streamline your marketing campaigns. With FlowPilot, you can launch multi-channel campaigns faster and achieve greater ROI.</p>
-          <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Get Started</a>
-            <a href="#" class="btn btn-secondary">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Automation Tools -->
-    <section class="section" style="background: var(--color-secondary); color: var(--color-white);">
-      <div class="container two-col">
-        <div>
-          <h2>Transform Your Marketing Efforts with FlowPilot's Powerful Automation Tools</h2>
-          <p>FlowPilot streamlines your campaign management, allowing for seamless execution across multiple channels. Experience faster launches and improved ROI with our intelligent, data-driven solutions.</p>
-        </div>
-        <div>
-          <img src="" alt="Automation tools"/>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section class="section" style="background: var(--color-light);">
-      <div class="container text-center">
-        <h2>Discover Our Powerful Automation Features</h2>
-        <p>FlowPilot offers intelligent templates that simplify campaign creation, allowing you to launch faster and more effectively. Our real-time analytics provide insights that drive data-informed decisions, maximizing your marketing ROI. Experience seamless multi-channel orchestration, ensuring your message reaches the right audience at the right time.</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <img src="" alt="Templates icon"/>
-            <h3>Streamline Your Campaigns with Intelligent Templates</h3>
-            <p>Create and customize campaigns effortlessly with our smart templates.</p>
-            <a href="#">Learn More</a> | <a href="#">Sign Up</a>
-          </div>
-          <div class="feature-card">
-            <img src="" alt="Analytics icon"/>
-            <h3>Gain Insights with Real-Time Analytics</h3>
-            <p>Make data-driven decisions to enhance your strategies.</p>
-          </div>
-          <div class="feature-card">
-            <img src="" alt="Multichannel icon"/>
-            <h3>Orchestrate Campaigns Across Multiple Channels</h3>
-            <p>Reach your audience effectively through various platforms.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Efficiency -->
-    <section class="section" style="background: var(--color-secondary); color: var(--color-white);">
-      <div class="container two-col">
-        <div>
-          <h2>Transform Your Campaigns with FlowPilot</h2>
-          <p>FlowPilot revolutionizes your marketing efforts by cutting campaign launch time in half. Experience enhanced ROI with our intelligent automation tools that streamline your workflow.</p>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <img src="" alt="Speed icon"/>
-              <div>
-                <h4>Faster Launches</h4>
-                <p>Launch campaigns in record time and stay ahead of the competition.</p>
-              </div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">Logo</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <div class="dropdown">
+                    <a href="#features">Features <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#automation">Automation</a>
+                        <a href="#analytics">Analytics</a>
+                        <a href="#templates">Templates</a>
+                    </div>
+                </div>
+                <a href="#get-started" class="cta-button">Get Started</a>
             </div>
-            <div class="stat-card">
-              <img src="" alt="ROI icon"/>
-              <div>
-                <h4>Maximized ROI</h4>
-                <p>Achieve higher returns on investment with data-driven insights and analytics.</p>
-              </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Transform Your Marketing with FlowPilot Today</h1>
+                <p>Unlock the power of AI-driven workflow automation to streamline your marketing campaigns. With FlowPilot, you can launch multi-channel campaigns faster and achieve greater ROI.</p>
+                <div class="hero-buttons">
+                    <a href="#get-started" class="cta-button">Get Started</a>
+                    <a href="#learn-more" class="secondary-button">Learn More</a>
+                </div>
             </div>
-          </div>
-          <div class="hero-buttons" style="margin-top:2rem;">
-            <a href="#" class="btn btn-secondary">Learn More</a>
-            <a href="#" class="btn btn-primary">Sign Up</a>
-          </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Modern building facade">
+            </div>
         </div>
-        <div>
-          <img src="" alt="Workflow image"/>
-        </div>
-      </div>
     </section>
 
-    <!-- Intuitive Workflow -->
-    <section class="section" style="background: var(--color-light);">
-      <div class="container two-col">
-        <div>
-          <h2>Streamline Your Campaigns with FlowPilot's Intuitive Workflow Automation</h2>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <img src="" alt="Dashboard icon"/>
-              <div>
-                <h4>Effortlessly Manage Multi-Channel Campaigns from a Single Dashboard</h4>
-                <p>FlowPilot simplifies campaign orchestration, enabling teams to focus on creativity and strategy.</p>
-              </div>
+    <!-- Marketing Efforts Section -->
+    <section class="marketing-section fade-in">
+        <div class="section-container">
+            <div class="section-content">
+                <h2>Transform Your Marketing Efforts with FlowPilot's Powerful Automation Tools</h2>
+                <p>FlowPilot streamlines your campaign management, allowing for seamless execution across multiple channels. Experience faster launches and improved ROI with our intelligent, data-driven solutions.</p>
             </div>
-            <div class="stat-card">
-              <img src="" alt="Automate icon"/>
-              <div>
-                <h4>Automate Repetitive Tasks to Boost Your Marketing Efficiency</h4>
-                <p>Our intelligent templates save time and enhance your campaign effectiveness.</p>
-              </div>
+            <div class="section-image">
+                <img src="saas.png" alt="Woman working on laptop">
             </div>
-            <div class="stat-card">
-              <img src="" alt="Data icon"/>
-              <div>
-                <h4>Analyze Real-Time Data to Optimize Your Marketing Efforts</h4>
-                <p>Leverage actionable insights to refine your strategies and maximize ROI.</p>
-              </div>
-            </div>
-          </div>
-          <div class="hero-buttons" style="margin-top:2rem;">
-            <a href="#" class="btn btn-secondary">Learn More</a>
-            <a href="#" class="btn btn-primary">Sign Up</a>
-            <a href="#" class="btn btn-secondary">Get Started</a>
-          </div>
         </div>
-        <div>
-          <img src="" alt="Workflow automation"/>
-        </div>
-      </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="section">
-      <div class="container text-center">
-        <h2>Customer Testimonials</h2>
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."</p>
-            <p><strong>Jane Doe</strong>, Marketing Director, Acme Corp</p>
-          </div>
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>"The analytics provided by FlowPilot were invaluable. We can now make data-driven decisions effortlessly!"</p>
-            <p><strong>John Smith</strong>, CEO, Tech LLC</p>
-          </div>
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."</p>
-            <p><strong>Name Surname</strong>, Position, Company Name</p>
-          </div>
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."</p>
-            <p><strong>Name Surname</strong>, Position, Company Name</p>
-          </div>
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."</p>
-            <p><strong>Name Surname</strong>, Position, Company Name</p>
-          </div>
-          <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."</p>
-            <p><strong>Name Surname</strong>, Position, Company Name</p>
-          </div>
+    <!-- Features Section -->
+    <section id="features" class="features-section fade-in">
+        <div class="section-container">
+            <div class="features-header">
+                <div class="label">Features</div>
+                <h2>Discover Our Powerful Automation Features</h2>
+                <p>FlowPilot offers intelligent templates, real-time analytics, and multi-channel orchestration to revolutionize your marketing workflow.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Streamline Your Campaigns with Intelligent Templates</h3>
+                    <p>Create and customize campaigns effortlessly with our smart templates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Gain Insights with Real-Time Analytics</h3>
+                    <p>Make data-driven decisions to enhance your strategies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Orchestrate Campaigns Across Multiple Channels</h3>
+                    <p>Reach your audience effectively through various platforms.</p>
+                </div>
+            </div>
+            <div class="section-links">
+                <a href="#learn-more">Learn More</a>
+                <a href="#sign-up">Sign Up <i class="fas fa-arrow-right"></i></a>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section" style="background: var(--color-secondary); color: var(--color-white);">
-      <div class="container two-col">
-        <div>
-          <h2>Experience Seamless Workflow Automation</h2>
-          <p>Transform your marketing campaigns with our intuitive platform. Sign up for a free trial today!</p>
-          <div class="hero-buttons" style="margin-top:1.5rem;">
-            <a href="#" class="btn btn-secondary">Demo</a>
-            <a href="#" class="btn btn-primary">Sign Up</a>
-          </div>
+    <!-- Efficiency Section -->
+    <section class="efficiency-section fade-in">
+        <div class="section-container">
+            <div class="efficiency-header">
+                <div class="label">Efficiency</div>
+                <h2>Transform Your Campaigns with FlowPilot</h2>
+                <p>FlowPilot revolutionizes your marketing efforts by cutting campaign launch time and enhancing ROI through intelligent automation.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-fast-forward"></i>
+                    </div>
+                    <h3>Faster Launches</h3>
+                    <p>Launch campaigns in record time and stay ahead of the competition.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Maximized ROI</h3>
+                    <p>Achieve higher returns on investment with data-driven insights and analytics.</p>
+                </div>
+            </div>
+            <div class="section-links">
+                <a href="#learn-more">Learn More</a>
+                <a href="#sign-up">Sign Up <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="section-image" style="margin-top: 3rem;">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Person working on laptop with Christmas decorations">
+            </div>
         </div>
-        <div>
-          <img src="" alt="Seamless automation"/>
-        </div>
-      </div>
     </section>
-  </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="two-col" style="justify-content: space-between;">
-        <div class="logo">Logo</div>
-        <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Blog Posts</a></li>
-          <li><a href="#">Careers Page</a></li>
-          <li><a href="#">Support Center</a></li>
-        </ul>
-        <ul class="social-icons">
-          <li><a href="#"><img src="" alt="Facebook"/></a></li>
-          <li><a href="#"><img src="" alt="Twitter"/></a></li>
-          <li><a href="#"><img src="" alt="LinkedIn"/></a></li>
-          <li><a href="#"><img src="" alt="Instagram"/></a></li>
-        </ul>
-      </div>
-      <p class="small text-center">© 2025 FlowPilot. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Cookie Settings</a></p>
-    </div>
-  </footer>
+    <!-- Workflow Section -->
+    <section class="workflow-section fade-in">
+        <div class="section-container">
+            <div class="workflow-header">
+                <h2>Streamline Your Campaigns with FlowPilot's Intuitive Workflow Automation</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Effortlessly Manage Multi-Channel Campaigns from a Single Dashboard</h3>
+                    <p>FlowPilot simplifies campaign orchestration, enabling teams to focus on creativity and strategy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Automate Repetitive Tasks to Boost Your Marketing Efficiency</h3>
+                    <p>Our intelligent templates save time and enhance your campaign effectiveness.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Analyze Real-Time Data to Optimize Your Marketing Efforts</h3>
+                    <p>Leverage actionable insights to refine your strategies and maximize ROI.</p>
+                </div>
+            </div>
+            <div class="section-links">
+                <a href="#learn-more">Learn More</a>
+                <a href="#sign-up">Sign Up <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    // fade in sections on load
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.add('visible'));
-    });
-    // subtle image scale on hover (in case CSS-only isn't enough)
-    document.querySelectorAll('img').forEach(img => {
-      img.style.transition = 'transform 0.3s';
-      img.addEventListener('mouseover', () => img.style.transform = 'scale(1.03)');
-      img.addEventListener('mouseout', () => img.style.transform = 'scale(1)');
-    });
-  </script>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section fade-in">
+        <div class="section-container">
+            <div class="testimonials-header">
+                <h2>Customer Testimonials</h2>
+                <p>FlowPilot transformed our marketing strategy completely!</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">The analytics provided by FlowPilot are invaluable. We can now make data-driven decisions effortlessly!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>Jane Doe</h4>
+                            <p>Marketing Director, Acme Corp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Using FlowPilot, we launched our campaigns in record time! The results exceeded our expectations.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">NS</div>
+                        <div class="author-info">
+                            <h4>Name Surname</h4>
+                            <p>Position, Company name</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>Jane Doe</h4>
+                            <p>Marketing Director, Acme Corp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">NS</div>
+                        <div class="author-info">
+                            <h4>Name Surname</h4>
+                            <p>Position, Company name</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="get-started" class="cta-section fade-in">
+        <div class="cta-container">
+            <div class="cta-content">
+                <h2>Experience Seamless Workflow Automation</h2>
+                <p>Transform your marketing campaigns with our intuitive platform. Sign up for a free trial today!</p>
+                <div class="cta-buttons">
+                    <a href="#demo" class="cta-button">Demo</a>
+                    <a href="#sign-up" class="secondary-button">Sign Up</a>
+                </div>
+            </div>
+            <div class="section-image">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Two women collaborating">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo">Logo</div>
+                <div class="footer-nav">
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact Us</a>
+                    <a href="#blog">Blog Posts</a>
+                    <a href="#careers">Careers Page</a>
+                    <a href="#support">Support Center</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">© 2023 FlowPilot. All rights reserved.</div>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#cookies">Cookie Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+            
+            if (hero && heroContent) {
+                const rate = scrolled * -0.5;
+                heroContent.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Add hover effects to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add typing effect to hero title
+        const heroTitle = document.querySelector('.hero-content h1');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroTitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 25);
+                }
+            };
+            
+            // Start typing effect after a delay
+            setTimeout(typeWriter, 500);
+        }
+
+        // Add counter animation for benefits
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.benefit-card h3');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (target.includes('Faster') || target.includes('Maximized')) {
+                    counter.style.opacity = '0';
+                    counter.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        counter.style.transition = 'all 0.6s ease';
+                        counter.style.opacity = '1';
+                        counter.style.transform = 'translateY(0)';
+                    }, 500);
+                }
+            });
+        };
+
+        // Trigger counter animation when efficiency section is visible
+        const efficiencySection = document.querySelector('.efficiency-section');
+        if (efficiencySection) {
+            const efficiencyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        efficiencyObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            efficiencyObserver.observe(efficiencySection);
+        }
+
+        // Add floating animation to CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.animation = 'float 0.6s ease-in-out';
+            });
+            
+            button.addEventListener('animationend', function() {
+                this.style.animation = '';
+            });
+        });
+
+        // Add CSS for float animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
-</html>
+</html> 
