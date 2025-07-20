@@ -98,7 +98,9 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
 .navbar ul .mobile-only {
   display: none;
 }
-
+.mobile-only {
+  display: none;
+}
 
 @media (prefers-color-scheme: dark){
  body{background:#121212;color:#e1e1e1;}
