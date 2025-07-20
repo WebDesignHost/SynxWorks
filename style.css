@@ -95,6 +95,11 @@ footer{background:#111;color:#ccc;text-align:center;padding:2rem;}
 
 footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
 
+.navbar ul .mobile-only {
+  display: none;
+}
+
+
 @media (prefers-color-scheme: dark){
  body{background:#121212;color:#e1e1e1;}
  header{background:#1e1e1e;}
@@ -121,6 +126,9 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     padding:2rem 1rem;
     box-shadow:-2px 0 10px rgba(0,0,0,.05);
     transition:right .3s;
+    .navbar ul .mobile-only {
+    display: list-item;
+  }
   }
 
   .nav-toggle:checked ~ ul{right:0;}
@@ -163,4 +171,3 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     opacity:0;
   }
 }
-
