@@ -38,9 +38,87 @@
     </label>
 
     <label>
-      Message*
-      <textarea name="message" rows="6" required></textarea>
-    </label>
+      Number of Website Pages*
+      <input type="text" name="# of pages" required autocomplete="# of pages" />
+    </label> 
+
+    <label>
+  When would you like your site to be live?*
+  <input type="date" name="projectTimeline" required />
+</label>
+
+<label>
+  What’s your approximate budget for this project?*
+  <select name="budgetRange" required>
+    <option value="" disabled selected>Select one…</option>
+    <option value="<1k">&lt;$1k</option>
+    <option value="1k-3k">$1k–$3k</option>
+    <option value="3k-5k">$3k–$5k</option>
+    <option value="5k+">$5k+</option>
+  </select>
+</label>
+
+<label>
+  What’s the main objective of the site?*<br/>
+  <small>(e.g. generate leads, sell products, showcase portfolio)</small>
+  <input type="text" name="primaryGoal" required />
+</label>
+
+<label>
+  Which features do you need?*<br/>
+  <small>(select all that apply)</small>
+  <select name="keyFeatures" multiple required>
+    <option value="contactForm">Contact form</option>
+    <option value="blog">Blog</option>
+    <option value="ecommerce">E‑commerce</option>
+    <option value="userLogin">User login</option>
+    <option value="bookingSystem">Booking system</option>
+  </select>
+</label>
+
+<label>
+  Do you have existing content (text, images, logo) or need us to produce new content?*
+  <select name="contentAssets" required>
+    <option value="" disabled selected>Select one…</option>
+    <option value="existing">I have existing content</option>
+    <option value="new">I need new content</option>
+  </select>
+</label>
+
+<label>
+  Any websites or styles you love?&nbsp;<span class="optional">(optional)</span><br/>
+  <small>Share links or keywords (e.g. modern, minimalist, bold)</small>
+  <input type="text" name="designInspiration" placeholder="https://example.com or keywords" />
+</label>
+
+<label>
+  Who are we designing for?&nbsp;<span class="optional">(optional)</span><br/>
+  <small>(e.g. B2B buyers, creatives, local customers)</small>
+  <input type="text" name="targetAudience" />
+</label>
+
+<label>
+  Do you already have a domain name and hosting plan?*
+  <select name="domainHosting" required>
+    <option value="" disabled selected>Select one…</option>
+    <option value="yes">Yes, I have both</option>
+    <option value="no">No, I need setup</option>
+  </select>
+</label>
+
+<label>
+  Will you need ongoing maintenance after launch?*
+  <select name="maintenanceSupport" required>
+    <option value="" disabled selected>Select one…</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+</label>
+
+<label>
+  Anything else we should know?&nbsp;<span class="optional">(optional)</span>
+  <textarea name="additionalComments" rows="4"></textarea>
+</label>
 
     <!-- honeypot (hidden from humans) -->
     <input type="text" name="company_website" tabindex="-1" autocomplete="off"
