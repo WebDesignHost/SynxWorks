@@ -126,10 +126,15 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     padding:2rem 1rem;
     box-shadow:-2px 0 10px rgba(0,0,0,.05);
     transition:right .3s;
+  }
+  
     .navbar ul .mobile-only {
     display: list-item;
+      
+      .btn-primary nav-cta{
+    display: none !important;
   }
-  }
+  
 
   .nav-toggle:checked ~ ul{right:0;}
 
