@@ -5,120 +5,142 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy | SynxWorks</title>
   <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/png" href="/favicon-48x48.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Privacy page–specific styles */
-    .privacy-header {
+    main.legal-main {
+      max-width: 800px;
+      margin: 3rem auto 2rem auto;
+      padding: 2rem 1.5rem 3rem 1.5rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    }
+    .legal-main h1 {
       text-align: center;
-      margin: 2rem 0;
-    }
-    .privacy-effective-date {
-      font-style: italic;
-      color: #666;
-      margin-bottom: 2rem;
-    }
-    .privacy-section {
-      margin-bottom: 2rem;
-    }
-    .privacy-section-title {
-      font-size: 1.5rem;
+      font-size: 2.5rem;
+      font-weight: 700;
       margin-bottom: 0.5rem;
+      color: var(--primary);
     }
-    .privacy-list {
+    .legal-main .legal-date {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+    .legal-main section {
+      margin-bottom: 2.5rem;
+    }
+    .legal-main h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+    .legal-main ul {
       margin-left: 1.5rem;
+      margin-bottom: 1rem;
       list-style-type: disc;
     }
-    .privacy-list-item {
+    .legal-main li {
       margin-bottom: 0.5rem;
     }
-    .privacy-contact {
-      margin-top: 2rem;
-    }
-    .privacy-contact a {
+    .legal-main a {
+      color: var(--primary);
       text-decoration: underline;
+      word-break: break-all;
+    }
+    .legal-main p {
+      margin-bottom: 1rem;
+      color: var(--dark);
+      text-align: left;
+    }
+    @media (max-width: 600px) {
+      main.legal-main {
+        padding: 1.25rem 0.5rem 2rem 0.5rem;
+      }
+      .legal-main h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="privacy-header">
+  <header id="site-header"></header>
+  <main class="legal-main">
     <h1>Privacy Policy</h1>
-    <p class="privacy-effective-date">Effective Date: July 20, 2025</p>
-  </header>
-
-  <main>
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">1. Introduction</h2>
+    <div class="legal-date">Effective Date: July 20, 2025</div>
+    <section>
+      <h2>1. Introduction</h2>
       <p>
         At SynxWorks (“we,” “us,” or “our”), your privacy is a top priority. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://synxworks.com">synxworks.com</a> or engage our services.
       </p>
     </section>
-
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">2. Information We Collect</h2>
-      <ul class="privacy-list">
-        <li class="privacy-list-item"><strong>Personal Data:</strong> Name, email address, phone number, company name, and other contact details you provide via forms or emails.</li>
-        <li class="privacy-list-item"><strong>Usage Data:</strong> Pages visited, time spent, referral URLs, browser type, and IP address, collected automatically through cookies and analytics tools.</li>
-        <li class="privacy-list-item"><strong>Cookies & Tracking:</strong> Small data files stored on your device to enhance site functionality and track preferences. You can manage cookie preferences in your browser settings.</li>
+    <section>
+      <h2>2. Information We Collect</h2>
+      <ul>
+        <li><strong>Personal Data:</strong> Name, email address, phone number, company name, and other contact details you provide via forms or emails.</li>
+        <li><strong>Usage Data:</strong> Pages visited, time spent, referral URLs, browser type, and IP address, collected automatically through cookies and analytics tools.</li>
+        <li><strong>Cookies & Tracking:</strong> Small data files stored on your device to enhance site functionality and track preferences. You can manage cookie preferences in your browser settings.</li>
       </ul>
     </section>
-
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">3. How We Use Your Information</h2>
+    <section>
+      <h2>3. How We Use Your Information</h2>
       <p>We use collected information to:</p>
-      <ul class="privacy-list">
-        <li class="privacy-list-item">Provide, maintain, and improve our web development services.</li>
-        <li class="privacy-list-item">Communicate with you about your projects, inquiries, and updates.</li>
-        <li class="privacy-list-item">Analyze usage patterns to optimize user experience and site performance.</li>
-        <li class="privacy-list-item">Comply with legal obligations and protect our rights.</li>
+      <ul>
+        <li>Provide, maintain, and improve our web development services.</li>
+        <li>Communicate with you about your projects, inquiries, and updates.</li>
+        <li>Analyze usage patterns to optimize user experience and site performance.</li>
+        <li>Comply with legal obligations and protect our rights.</li>
       </ul>
     </section>
-
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">4. Cookies and Tracking Technologies</h2>
+    <section>
+      <h2>4. Cookies and Tracking Technologies</h2>
       <p>
         We employ cookies, web beacons, and similar technologies to collect usage data. You may opt out by adjusting your browser settings, but please note that disabling cookies may affect site functionality.
       </p>
     </section>
-
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">5. Third‑Party Services</h2>
+    <section>
+      <h2>5. Third‑Party Services</h2>
       <p>
         We may share data with trusted third parties, including:
       </p>
-      <ul class="privacy-list">
-        <li class="privacy-list-item">Analytics providers (e.g., Google Analytics) to monitor site traffic.</li>
-        <li class="privacy-list-item">Hosting and email service providers to deliver our services.</li>
-        <li class="privacy-list-item">Payment processors, if you make purchases or payments.</li>
+      <ul>
+        <li>Analytics providers (e.g., Google Analytics) to monitor site traffic.</li>
+        <li>Hosting and email service providers to deliver our services.</li>
+        <li>Payment processors, if you make purchases or payments.</li>
       </ul>
     </section>
-
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">6. Data Security</h2>
+    <section>
+      <h2>6. Data Security</h2>
       <p>
         We implement appropriate technical and organizational measures to protect your data against unauthorized access, alteration, disclosure, or destruction.
       </p>
     </section>
-
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">7. Children’s Privacy</h2>
+    <section>
+      <h2>7. Children’s Privacy</h2>
       <p>
         Our services are not directed to children under 16. We do not knowingly collect or store personal data from minors. If you believe we have inadvertently collected such data, please contact us to have it removed.
       </p>
     </section>
-
-    <section class="privacy-section">
-      <h2 class="privacy-section-title">8. Changes to This Policy</h2>
+    <section>
+      <h2>8. Changes to This Policy</h2>
       <p>
         We may update this Privacy Policy periodically. Changes will be effective upon posting the revised policy with a new “Effective Date” above. We encourage you to review this page regularly.
       </p>
     </section>
-
-    <section class="privacy-section privacy-contact">
-      <h2 class="privacy-section-title">9. Contact Us</h2>
+    <section>
+      <h2>9. Contact Us</h2>
       <p>
         If you have questions or concerns about this policy, please email us at
         <a href="mailto:privacy@synxworks.com">privacy@synxworks.com</a>.
       </p>
     </section>
   </main>
+  <footer id="site-footer"></footer>
+  <script src="/loadPartial.js"></script>
 </body>
 </html>
