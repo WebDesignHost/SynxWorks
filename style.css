@@ -95,27 +95,16 @@ footer{background:#111;color:#ccc;text-align:center;padding:2rem;}
 
 footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
 
-.navbar ul .mobile-only {
-  display: none;
-}
-.mobile-only {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark){
- body{background:#121212;color:#e1e1e1;}
- header{background:#1e1e1e;}
- .navbar a{color:#e1e1e1;}
- .card{background:#1e1e1e;}
- .quote{background:#1e1e1e;}
-}
-
 /* ======== Hamburger Menu ======== */
 .nav-toggle{display:none;} /* hide checkbox */
 
 .nav-toggle-label{display:none;} /* hidden on desktop */
 
+/* Ensure mobile-only nav items are hidden on desktop */
+.navbar ul .mobile-only{display:none;}
+
 @media (max-width:768px){
+  /* Slide-in menu styles */
   .navbar ul{
     position:fixed;
     top:70px;
@@ -129,26 +118,17 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     box-shadow:-2px 0 10px rgba(0,0,0,.05);
     transition:right .3s;
   }
-  
-    .navbar ul .mobile-only {
-    display: list-item;
-      
-      .btn-primary nav-cta{
-    display: none !important;
-  }
-  
 
-  .nav-toggle:checked ~ ul{right:0;}
+  /* Show the extra mobile link items */
+  .navbar ul .mobile-only{display:list-item;}
 
-  /* hide CTA button on mobile (outside of menu) */
-  .nav-cta{display:none;}
+  /* Hide desktop CTA button on mobile */
+  .nav-cta{display:none !important;}
 
-  .nav-toggle-label{
-    display:block;
-    cursor:pointer;
-    width:30px;
-    height:22px;
-  }
+  /* Reveal hamburger icon */
+  .nav-toggle-label{display:block;cursor:pointer;width:30px;height:22px;}
+
+  /* Hamburger bars */
   .nav-toggle-label span,
   .nav-toggle-label span::before,
   .nav-toggle-label span::after{
@@ -156,28 +136,28 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     display:block;
     height:3px;
     width:100%;
-    background: #ffffff;
+    background:#ffffff;
     border-radius:2px;
     transition:transform .3s,opacity .3s;
   }
   .nav-toggle-label span::before,
-  .nav-toggle-label span::after{
-    position:relative;
-  }
+  .nav-toggle-label span::after{position:relative;}
   .nav-toggle-label span::before{top:-8px;}
   .nav-toggle-label span::after{top:5px;}
 
-  /* transform to X when checked */
-  .nav-toggle:checked + .nav-toggle-label span{
-    transform:rotate(45deg);
-  }
-  .nav-toggle:checked + .nav-toggle-label span::before{
-    transform:rotate(90deg) translateX(3px);
-  }
-  .nav-toggle:checked + .nav-toggle-label span::after{
-    opacity:0;
-  }
+  /* Transform hamburger to X when checked */
+  .nav-toggle:checked + .nav-toggle-label span{transform:rotate(45deg);} 
+  .nav-toggle:checked + .nav-toggle-label span::before{transform:rotate(90deg) translateX(3px);} 
+  .nav-toggle:checked + .nav-toggle-label span::after{opacity:0;} 
+
+  /* Slide menu in when checked */
+  .nav-toggle:checked ~ ul{right:0;}
 }
- .navbar ul .mobile-only {
-    display: list-item;
-  }
+
+@media (prefers-color-scheme: dark){
+ body{background:#121212;color:#e1e1e1;}
+ header{background:#1e1e1e;}
+ .navbar a{color:#e1e1e1;}
+ .card{background:#1e1e1e;}
+ .quote{background:#1e1e1e;}
+}
