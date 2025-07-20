@@ -171,3 +171,6 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
     opacity:0;
   }
 }
+ .navbar ul .mobile-only {
+    display: list-item;
+  }
