@@ -70,28 +70,23 @@
   <div class="checkbox-group">
     <label class="checkbox-label">
       <input type="checkbox" name="keyFeatures" value="contactForm" />
-      <span class="checkmark"></span>
-      Contact form
+      <span>Contact form</span>
     </label>
     <label class="checkbox-label">
       <input type="checkbox" name="keyFeatures" value="blog" />
-      <span class="checkmark"></span>
-      Blog
+      <span>Blog</span>
     </label>
     <label class="checkbox-label">
       <input type="checkbox" name="keyFeatures" value="ecommerce" />
-      <span class="checkmark"></span>
-      E‑commerce
+      <span>E‑commerce</span>
     </label>
     <label class="checkbox-label">
       <input type="checkbox" name="keyFeatures" value="userLogin" />
-      <span class="checkmark"></span>
-      User login
+      <span>User login</span>
     </label>
     <label class="checkbox-label">
       <input type="checkbox" name="keyFeatures" value="bookingSystem" />
-      <span class="checkmark"></span>
-      Booking system
+      <span>Booking system</span>
     </label>
   </div>
 </label>
@@ -101,13 +96,11 @@
   <div class="radio-group">
     <label class="radio-label">
       <input type="radio" name="contentAssets" value="existing" required />
-      <span class="radio-custom"></span>
-      I have existing content
+      <span>I have existing content</span>
     </label>
     <label class="radio-label">
       <input type="radio" name="contentAssets" value="new" required />
-      <span class="radio-custom"></span>
-      I need new content
+      <span>I need new content</span>
     </label>
   </div>
 </label>
@@ -129,13 +122,11 @@
   <div class="radio-group">
     <label class="radio-label">
       <input type="radio" name="domainHosting" value="yes" required />
-      <span class="radio-custom"></span>
-      Yes, I have both
+      <span>Yes, I have both</span>
     </label>
     <label class="radio-label">
       <input type="radio" name="domainHosting" value="no" required />
-      <span class="radio-custom"></span>
-      No, I need setup
+      <span>No, I need setup</span>
     </label>
   </div>
 </label>
@@ -145,13 +136,11 @@
   <div class="radio-group">
     <label class="radio-label">
       <input type="radio" name="maintenanceSupport" value="yes" required />
-      <span class="radio-custom"></span>
-      Yes
+      <span>Yes</span>
     </label>
     <label class="radio-label">
       <input type="radio" name="maintenanceSupport" value="no" required />
-      <span class="radio-custom"></span>
-      No
+      <span>No</span>
     </label>
   </div>
 </label>
@@ -334,7 +323,8 @@
     transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 6px;
-    border: 2px solid transparent;
+    border: 2px solid var(--border-color);
+    background: #fff;
   }
 
   .radio-label:hover {
@@ -346,36 +336,19 @@
     display: none;
   }
 
-  .radio-custom {
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    position: relative;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .radio-label input[type="radio"]:checked + .radio-custom {
-    border-color: var(--focus-color);
-    background: var(--focus-color);
-  }
-
-  .radio-label input[type="radio"]:checked + .radio-custom::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
-  }
-
   .radio-label input[type="radio"]:checked ~ span {
-    color: var(--focus-color);
+    color: white;
     font-weight: 600;
+  }
+
+  .radio-label input[type="radio"]:checked {
+    background: var(--primary);
+  }
+
+  .radio-label:has(input[type="radio"]:checked) {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
   }
 
   /* Checkbox styling */
@@ -396,7 +369,8 @@
     transition: all 0.3s ease;
     padding: 0.5rem 0.75rem;
     border-radius: 6px;
-    border: 2px solid transparent;
+    border: 2px solid var(--border-color);
+    background: #fff;
   }
 
   .checkbox-label:hover {
@@ -408,35 +382,15 @@
     display: none;
   }
 
-  .checkmark {
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--border-color);
-    border-radius: 4px;
-    position: relative;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .checkbox-label input[type="checkbox"]:checked + .checkmark {
-    border-color: var(--focus-color);
-    background: var(--focus-color);
-  }
-
-  .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-  }
-
   .checkbox-label input[type="checkbox"]:checked ~ span {
-    color: var(--focus-color);
+    color: white;
     font-weight: 600;
+  }
+
+  .checkbox-label:has(input[type="checkbox"]:checked) {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
   }
 
   /* Button styling */
