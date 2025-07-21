@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -76,7 +75,7 @@
   transition: color 0.3s ease;    /* animate the text color */
 }
 
-/* underline “slide in” on hover */
+/* underline "slide in" on hover */
 .view-project::before {
   content: "";
   position: absolute;
@@ -236,13 +235,26 @@
     display: list-item;
   }
 }
+
+    /* Disclaimer Bar */
+    .disclaimer-bar {
+      background-color: #e0e0e0;
+      color: #444;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      width: 100%;
+    }
   </style>
   <header id="site-header"></header>
+  <div class="disclaimer-bar">
+    Note: these are demo sites, branding has been altered and site functionality may vary (links to other places do not work).
+  </div>
   <body class="portfolio-body">
     <section id="portfolio">
       <div class="portfolio-header">
         <h2>Our Portfolio</h2>
-        <p>Discover the websites we’ve built to drive growth and engagement.</p>
+        <p>Discover the websites we've built to drive growth and engagement.</p>
       </div>
 
       <div class="portfolio-grid">
@@ -366,6 +378,8 @@
           const link = item.querySelector(".view-project");
           link.addEventListener("click", (e) => e.stopPropagation());
 
+          /* 
+          // Commented out modal click functionality
           item.addEventListener("click", () => {
             const idx = parseInt(item.dataset.index, 10);
             const proj = projects[idx];
@@ -395,6 +409,7 @@
             modal.classList.add("active");
             document.body.classList.add('modal-open');
           });
+          */
         });
 
         function closeModal() {
