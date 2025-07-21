@@ -310,12 +310,14 @@ footer a{color:#ccc;text-decoration:none;margin:0 .5rem;}
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-   <!-- WebLLM bundle -->
-<script src="https://unpkg.com/@mlc-ai/web-llm@latest/dist/web-llm.min.js"></script>
-<script>
+  <div id="chatbot"></div>
+
+<script type="module">
+import * as webllm from "https://unpkg.com/@mlc-ai/web-llm@0.2.79/lib/index.js";
+
 (async () => {
   const chat = await webllm.createMLCEngine({
-    model: "Qwen2-1.5B-Instruct-q4f16_1",  // small, fast model
+    model: "Qwen2-1.5B-Instruct-q4f16_1",
   });
 
   const box = document.getElementById("chatbot");
@@ -324,27 +326,31 @@ document.getElementById('year').textContent = new Date().getFullYear();
       #chatbot * { font-family: system-ui; }
       #chat-window { border:1px solid #ccc; padding:8px; height:250px; overflow-y:auto; font-size:14px; }
       #chat-input { width:100%; padding:6px; margin-top:4px; }
-      #chat-send { margin-top:4px; }
     </style>
     <div id="chat-window"></div>
     <input id="chat-input" placeholder="Ask me about our services..." />
     <button id="chat-send">Send</button>
   `;
+
   const win = document.getElementById("chat-window");
   const input = document.getElementById("chat-input");
   document.getElementById("chat-send").onclick = async () => {
     const userMsg = input.value.trim();
-    if(!userMsg) return;
+    if (!userMsg) return;
     win.innerHTML += `<div><strong>You:</strong> ${userMsg}</div>`;
     input.value = "";
     const replyEl = document.createElement("div");
     replyEl.innerHTML = "<strong>Bot:</strong> ...";
     win.appendChild(replyEl);
+
     const resp = await chat.chat.completions.create({
-      messages: [{role:"system", content:"You are SynxWorks sales assistant. Collect email and project details politely."},
-                 {role:"user", content:userMsg}],
+      messages: [
+        { role: "system", content: "You are SynxWorks sales assistant. Collect email and project details politely." },
+        { role: "user", content: userMsg }
+      ],
       stream: true
     });
+
     let full = "";
     for await (const chunk of resp) {
       const token = chunk.choices[0]?.delta?.content || "";
@@ -355,7 +361,5 @@ document.getElementById('year').textContent = new Date().getFullYear();
   };
 })();
 </script>
-
-
 </body>
 </html>
