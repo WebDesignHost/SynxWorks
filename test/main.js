@@ -271,7 +271,8 @@ const res = await fetch(API_URL, {
         }
 
         // Clear typing indicator and start streaming
-        widgetTypingIndicator.style.display = 'none';
+        if (widgetTypingIndicator) widgetTypingIndicator.style.display = 'block';
+
 
         // Create message element for streaming
         const messageElement = document.createElement('div');
@@ -318,7 +319,7 @@ const res = await fetch(API_URL, {
         widgetChatHistory.push({ role: "assistant", content: fullResponse });
 
       } catch (err) {
-        widgetTypingIndicator.style.display = 'none';
+        if (widgetTypingIndicator) widgetTypingIndicator.style.display = 'none';
         addMessageToWidget('bot', '⚠️ Server error. Please try again.');
         console.error('API Error:', err);
       }
