@@ -946,12 +946,12 @@
                 gap: 15px;
             }
             /* Hide AI assistant form and chat widget button on mobile */
-           /* .ai-assistant-form {
+            .ai-assistant-form {
                 display: none !important;
             }
             .chat-widget-button {
                 display: none !important;
-            } --------------------------------------------------------------*/
+            } 
         }
 #typingDots {
   font-style: italic;
