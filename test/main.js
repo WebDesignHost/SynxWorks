@@ -257,11 +257,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Real API call to OpenAI
     (async () => {
       try {
-        const res = await fetch('/api/gpt', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: widgetChatHistory })
-        });
+        const API_URL =
+  location.hostname === 'localhost'
+    ? 'http://localhost:3000/api/gpt'
+    : 'https://synxbot.onrender.com/api/gpt';
+
+const res = await fetch(API_URL, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ messages: widgetChatHistory })
+});
+
 
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
