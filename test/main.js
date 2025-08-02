@@ -248,9 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear input
     widgetPrompt.value = '';
     
-    // Show typing indicator
-    widgetTypingIndicator.style.display = 'block';
-    
     // Add to history
     widgetChatHistory.push({ role: "user", content: userInput });
     
