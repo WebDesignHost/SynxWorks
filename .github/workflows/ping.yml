@@ -1,8 +1,9 @@
 name: Keep SynxBot Warm
+
 on:
   schedule:
-    - cron:  '*/10 * * * *'   # every 10 min (UTC)
-  workflow_dispatch:          # lets you run it manually from the Actions tab
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
 
 jobs:
   curl:
