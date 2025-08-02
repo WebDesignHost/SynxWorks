@@ -1,168 +1,73 @@
 
-  document.getElementById('aiAssistantForm').addEventListener('submit', async (e) => {
+  // AI Assistant Form handling
+const aiAssistantForm = document.getElementById('aiAssistantForm');
+if (aiAssistantForm) {
+  aiAssistantForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const userInput = document.getElementById('aiPrompt').value.trim();
+    const aiPrompt = document.getElementById('aiPrompt');
+    if (!aiPrompt) return;
+    
+    const userInput = aiPrompt.value.trim();
     if (!userInput) return;
 
     // Clear the hero form
-    document.getElementById('aiPrompt').value = '';
+    aiPrompt.value = '';
     
     // Open the chat widget
     const chatWidget = document.getElementById('chat-widget-container');
     const chatButton = document.getElementById('chat-widget-button');
 
-	document.getElementById('aiAssistantForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+    // Clear and blur the hero form so the user isn't still typing there
+    aiPrompt.blur();
 
-  const aiPromptEl = document.getElementById('aiPrompt');
-  const userInput = aiPromptEl.value.trim();
-  if (!userInput) return;
-
-  // Clear and blur the hero form so the user isn't still typing there
-  aiPromptEl.value = '';
-  aiPromptEl.blur();
-
-  // Open the chat widget
-  const chatWidget = document.getElementById('chat-widget-container');
-  if (chatWidget) chatWidget.classList.add('active');
-
-  // Transfer the message and focus the widget input
-  const widgetPrompt = document.getElementById('widgetPrompt');
-  const widgetSubmitButton = document.getElementById('widgetSubmitButton');
-  if (widgetPrompt) {
-    widgetPrompt.value = userInput;
-    // Put the caret at the end and focus so the user can keep typing
-    widgetPrompt.focus();
-    widgetPrompt.setSelectionRange(widgetPrompt.value.length, widgetPrompt.value.length);
-
-    // Trigger the widget submit and then return focus for follow-ups
-    setTimeout(() => {
-      if (widgetSubmitButton) widgetSubmitButton.click();
-      widgetPrompt.focus(); // keep focus inside the widget
-    }, 120);
-  }
-});
-
-    
-    if (chatWidget && chatButton) {
+    if (chatWidget) {
       chatWidget.classList.add('active');
-	// Inside your aiAssistantForm submit handler, right after you open the widget:
-if (chatWidget && chatButton) {
-  chatWidget.classList.add('active');
+    }
 
-  // 👇 move the caret out of the hero form
-  const heroTextarea = document.getElementById('aiPrompt');
-  if (heroTextarea) heroTextarea.blur();
-
-  // Transfer the message to the widget
-  const widgetPrompt = document.getElementById('widgetPrompt');
-  if (widgetPrompt) {
-    widgetPrompt.value = userInput;
-
-    // 👇 focus the widget input and place the caret at the end
-    requestAnimationFrame(() => {
+    // Transfer the message and focus the widget input
+    const widgetPrompt = document.getElementById('widgetPrompt');
+    const widgetSubmitButton = document.getElementById('widgetSubmitButton');
+    if (widgetPrompt) {
+      widgetPrompt.value = userInput;
+      // Put the caret at the end and focus so the user can keep typing
       widgetPrompt.focus();
-      const end = widgetPrompt.value.length;
-      try { widgetPrompt.setSelectionRange(end, end); } catch (_) {}
-    });
+      widgetPrompt.setSelectionRange(widgetPrompt.value.length, widgetPrompt.value.length);
 
-    // Trigger the widget submit
-    setTimeout(() => {
-      const widgetSubmitButton = document.getElementById('widgetSubmitButton');
-      if (widgetSubmitButton) {
-        widgetSubmitButton.click();
-
-        // 👇 keep focus in the widget input for the next message
-        requestAnimationFrame(() => widgetPrompt.focus());
-      }
-    }, 100);
-  }
+      // Trigger the widget submit and then return focus for follow-ups
+      setTimeout(() => {
+        if (widgetSubmitButton) widgetSubmitButton.click();
+        widgetPrompt.focus(); // keep focus inside the widget
+      }, 120);
+    }
+  });
 }
 
-      
-      // Transfer the message to the widget
-      const widgetPrompt = document.getElementById('widgetPrompt');
-      if (widgetPrompt) {
-        widgetPrompt.value = userInput;
-        
-        // Trigger the widget submit
-        setTimeout(() => {
-          const widgetSubmitButton = document.getElementById('widgetSubmitButton');
-          if (widgetSubmitButton) {
-            widgetSubmitButton.click();
-          }
-        }, 100);
-      }
-    }
-  });
-
   // Handle Enter key in hero form textarea
-  document.getElementById('aiPrompt').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      document.getElementById('aiAssistantForm').dispatchEvent(new Event('submit'));
-    }
-  });
-
-
-
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const nav = document.querySelector('nav');
-        const header = document.querySelector('header');
-        
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!nav.contains(e.target) && !menuToggle.contains(e.target) && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-            }
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Cursor click animation
-        const hero = document.querySelector('.hero');
-        const createRipple = (e) => {
-            const ripple = document.createElement('div');
-            ripple.className = 'cursor-click';
-            ripple.style.left = `${e.clientX}px`;
-            ripple.style.top = `${e.clientY}px`;
-            document.body.appendChild(ripple);
-            
-            ripple.classList.add('active');
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 800);
-        };
-        
-        hero.addEventListener('click', createRipple);
+  const aiPrompt = document.getElementById('aiPrompt');
+  if (aiPrompt && aiAssistantForm) {
+    aiPrompt.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        aiAssistantForm.dispatchEvent(new Event('submit'));
+      }
+    });
+  }
 
         // Contact form handling
         const contactForm = document.getElementById('contactForm');
         
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Check honeypot
-            const honeypot = this.querySelector('input[name="company_website"]');
-            if (honeypot.value) {
-                // This is spam, show generic error
-                alert('There was an error submitting your form. Please try again.');
-                return;
-            }
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Check honeypot
+                const honeypot = this.querySelector('input[name="company_website"]');
+                if (honeypot && honeypot.value) {
+                    // This is spam, show generic error
+                    alert('There was an error submitting your form. Please try again.');
+                    return;
+                }
             
             // Get form data
             const formData = new FormData(this);
@@ -178,34 +83,92 @@ if (chatWidget && chatButton) {
                 return;
             }
             
-            // Show success message
-            this.innerHTML = `
-                <div class="form-success">
-                    <h3>Your strategy call is confirmed!</h3>
-                    <p>We'll email you within one business day to schedule your free 30-minute strategy session.</p>
-                    <a href="mailto:contact@synxworks.com" class="cta-button">Email Us: contact@synxworks.com</a>
-                </div>
-            `;
-        });
-
-        // Smooth scroll offset for fixed header
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 20;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                // Show success message
+                this.innerHTML = `
+                    <div class="form-success">
+                        <h3>Your strategy call is confirmed!</h3>
+                        <p>We'll email you within one business day to schedule your free 30-minute strategy session.</p>
+                        <a href="mailto:contact@synxworks.com" class="cta-button">Email Us: contact@synxworks.com</a>
+                    </div>
+                `;
             });
-        });
+        }
+
+
 
 // Chat Widget Functionality
 document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu toggle
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('nav');
+  const header = document.querySelector('header');
+  
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && !menuToggle.contains(e.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+      }
+    });
+  }
+  
+  // Header scroll effect
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Add scrolled class if page loads already scrolled
+    if (window.scrollY > 100) {
+      header.classList.add('scrolled');
+    }
+  }
+  
+  // Cursor click animation
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const createRipple = (e) => {
+      const ripple = document.createElement('div');
+      ripple.className = 'cursor-click';
+      ripple.style.left = `${e.clientX}px`;
+      ripple.style.top = `${e.clientY}px`;
+      document.body.appendChild(ripple);
+      
+      ripple.classList.add('active');
+      
+      setTimeout(() => {
+        ripple.remove();
+      }, 800);
+    };
+    
+    hero.addEventListener('click', createRipple);
+  }
+  
+  // Smooth scroll offset for fixed header
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = target.offsetTop - headerHeight - 20;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+  
+  // Chat widget elements
   const chatButton = document.getElementById('chat-widget-button');
   const chatWidget = document.getElementById('chat-widget-container');
   const minimizeButton = document.getElementById('minimize-chat');
@@ -216,27 +179,37 @@ document.addEventListener('DOMContentLoaded', function() {
   // Widget chat history
   const widgetChatHistory = [];
   
-  // Toggle chat widget
-  chatButton.addEventListener('click', function() {
-    chatWidget.classList.toggle('active');
-    if (chatWidget.classList.contains('active')) {
-      widgetPrompt.focus();
-    }
-  });
+  // Only set up chat widget if the elements exist
+  if (chatButton && chatWidget) {
+    // Toggle chat widget
+    chatButton.addEventListener('click', function() {
+      chatWidget.classList.toggle('active');
+      if (chatWidget.classList.contains('active') && widgetPrompt) {
+        widgetPrompt.focus();
+      }
+    });
+  }
   
-  // Minimize chat widget
-  minimizeButton.addEventListener('click', function() {
-    chatWidget.classList.remove('active');
-  });
+  // Minimize chat widget (if the elements exist)
+  if (minimizeButton && chatWidget) {
+    minimizeButton.addEventListener('click', function() {
+      chatWidget.classList.remove('active');
+    });
+  }
   
-  // Handle widget form submission
-  widgetSubmitButton.addEventListener('click', handleWidgetSubmit);
-  widgetPrompt.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleWidgetSubmit();
-    }
-  });
+  // Handle widget form submission (if the elements exist)
+  if (widgetSubmitButton) {
+    widgetSubmitButton.addEventListener('click', handleWidgetSubmit);
+  }
+  
+  if (widgetPrompt) {
+    widgetPrompt.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleWidgetSubmit();
+      }
+    });
+  }
   
   function handleWidgetSubmit() {
     const userInput = widgetPrompt.value.trim();
@@ -248,31 +221,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear input
     widgetPrompt.value = '';
     
+    // Show typing indicator
+    widgetTypingIndicator.style.display = 'block';
+    
     // Add to history
     widgetChatHistory.push({ role: "user", content: userInput });
     
     // Real API call to OpenAI
     (async () => {
       try {
-        const API_URL =
-  location.hostname === 'localhost'
-    ? 'http://localhost:3000/api/gpt'
-    : 'https://synxbot.onrender.com/api/gpt';
-
-const res = await fetch(API_URL, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ messages: widgetChatHistory })
-});
-
+        const res = await fetch('/api/gpt', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: widgetChatHistory })
+        });
 
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
 
         // Clear typing indicator and start streaming
-        if (widgetTypingIndicator) widgetTypingIndicator.style.display = 'block';
-
+        widgetTypingIndicator.style.display = 'none';
 
         // Create message element for streaming
         const messageElement = document.createElement('div');
@@ -319,7 +288,7 @@ const res = await fetch(API_URL, {
         widgetChatHistory.push({ role: "assistant", content: fullResponse });
 
       } catch (err) {
-        if (widgetTypingIndicator) widgetTypingIndicator.style.display = 'none';
+        widgetTypingIndicator.style.display = 'none';
         addMessageToWidget('bot', '⚠️ Server error. Please try again.');
         console.error('API Error:', err);
       }
@@ -338,16 +307,23 @@ const res = await fetch(API_URL, {
   }
   
   // Adjust textarea height automatically
-  widgetPrompt.addEventListener('input', function() {
-    this.style.height = 'auto';
-    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-  });
+  if (widgetPrompt) {
+    widgetPrompt.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+    });
+  }
   
   // Close widget when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!chatWidget.contains(e.target) && !chatButton.contains(e.target) && chatWidget.classList.contains('active')) {
-      chatWidget.classList.remove('active');
-    }
-  });
+  if (chatWidget && chatButton) {
+    document.addEventListener('click', function(e) {
+      if (chatWidget && chatButton && 
+          !chatWidget.contains(e.target) && 
+          !chatButton.contains(e.target) && 
+          chatWidget.classList.contains('active')) {
+        chatWidget.classList.remove('active');
+      }
+    });
+  }
 });
     
