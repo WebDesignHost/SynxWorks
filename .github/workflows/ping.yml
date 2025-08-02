@@ -1,0 +1,13 @@
+name: Keep SynxBot Warm
+on:
+  schedule:
+    - cron:  '*/10 * * * *'   # every 10 min (UTC)
+  workflow_dispatch:          # lets you run it manually from the Actions tab
+
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit Render endpoint
+        run: |
+          curl -fsS -o /dev/null https://synxbot.onrender.com/ || true
