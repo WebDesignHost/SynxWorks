@@ -9,6 +9,11 @@ app.use(express.static('public'));
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+app.get('/', (req, res) => {
+  res.status(200).send('SynxBot is alive');
+});
+
+
 app.post('/api/gpt', async (req, res) => {
   const userMessages = Array.isArray(req.body.messages) ? req.body.messages : [];
 
@@ -81,4 +86,5 @@ Throughout every exchange, subtly build trust by referencing our expertise, clie
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`SynxBot (chat-completions) running at http://localhost:${PORT}`);
+
 }); 
